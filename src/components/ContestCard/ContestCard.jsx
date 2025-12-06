@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const ContestCard = ({contest}) => {
     return (
@@ -29,9 +30,9 @@ const ContestCard = ({contest}) => {
 
                     {/* Footer */}
                     <div className="card-actions justify-end mt-2">
-                        <button className="btn btn-primary btn-sm">
+                        <Link to={`/contest-details/${contest._id}`}  className="btn btn-primary btn-sm">
                             Details
-                        </button>
+                        </Link >
                     </div>
                 </div>
             </div>
