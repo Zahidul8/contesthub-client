@@ -33,7 +33,9 @@ export const router = createBrowserRouter([
         },
         {
             path: '/contest-details/:id',
-            Component: ContestDetails
+            element: <PrivateRoute>
+                <ContestDetails></ContestDetails>
+            </PrivateRoute>
         },
         {
             path: 'login',

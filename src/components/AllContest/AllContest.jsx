@@ -24,7 +24,7 @@ const AllContest = () => {
              <h1 className='text-4xl font-bold text-center my-8'>All Contests</h1>
 
          <Tabs>
-    <TabList className="flex gap-20 my-8">
+    <TabList className="flex gap-x-20 justify-center my-8 flex-wrap">
       <Tab  onClick={() => setType('Drawing')}>Drawing</Tab>
       <Tab  onClick={() => setType('Writing')}>Writing</Tab>
       <Tab  onClick={() => setType('Coding')}>Coding</Tab>
