@@ -7,8 +7,10 @@
  @plugin "daisyui/theme" {
   name: "light";
   default: true;
-  --color-primary: blue;
-  --color-secondary: teal;
+  --color-primary: #16476A; /* ok for all button and section heading*/
+  --color-secondary: #F5F5F0;
+  /* --color-base-100: #C4E1E6;  */
+  --color-base-content: #0c0e1a; /* text */
 }
 @plugin "daisyui/theme" {
   name: "dark";
