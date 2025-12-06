@@ -12,6 +12,9 @@ import MyWinningContest from "../DashboardPages/UserDashboard/MyWinningContest";
 import AllContestPage from "../Pages/AllContestPage";
 import LoginPage from "../Pages/Loginpage";
 import PrivateRoute from "./PrivateRoute";
+import NotFound from "../Pages/NotFount";
+import MyCreatedContest from "../DashboardPages/CreatorDashboard/MyCreatedContest";
+
 
 
 export const router = createBrowserRouter([
@@ -35,6 +38,10 @@ export const router = createBrowserRouter([
             path: 'register',
             Component: RegistrationPage
         },
+        {
+        path: "*",
+        Component: NotFound
+      }
     ]
   },
   {
@@ -57,7 +64,7 @@ export const router = createBrowserRouter([
         },
         {
             path:'myCreated-contest',
-            Component: ManageUsers
+            Component: MyCreatedContest
         },
         {
             path:'submitted-tasks',

@@ -1,5 +1,4 @@
 import { Link, useLocation, useNavigate } from "react-router";
-import { FcGoogle } from "react-icons/fc";
 import useAuth from "../hooks/useAuth";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
