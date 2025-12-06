@@ -1,20 +1,32 @@
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { FcGoogle } from "react-icons/fc";
 import useAuth from "../hooks/useAuth";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import GoogleSignIn from "../components/GoogleSignIn/GoogleSignIn";
+import Swal from "sweetalert2";
 
 export default function Login() {
     const { signIn } = useAuth();
     const [showPassword, setShowPassword] = useState(false);
+    const location = useLocation();
+    const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const handleSignIn = (data) => {
 
         signIn(data.email, data.password)
             .then(result => {
+
+                Swal.fire({
+                    position: "top-center",
+                    icon: "success",
+                    title: "SignIn successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                navigate(location?.state || '/');
                 console.log(result.user);
 
             })

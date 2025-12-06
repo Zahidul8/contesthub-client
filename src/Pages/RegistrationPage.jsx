@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { FcGoogle } from "react-icons/fc";
 import { useForm } from "react-hook-form";
 import useAuth from "../hooks/useAuth";
@@ -9,8 +9,10 @@ import { useState } from "react";
 import GoogleSignIn from "../components/GoogleSignIn/GoogleSignIn";
 
 export default function Register() {
-    const { createUser, updateUserProfile } = useAuth();
-     const [showPassword, setShowPassword] = useState(false);
+    const { createUser, updateUserProfile, logOut } = useAuth();
+    const [showPassword, setShowPassword] = useState(false);
+    const location = useLocation();
+    const navigate = useNavigate();
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -44,9 +46,16 @@ export default function Register() {
                                 console.log(error.message);
 
                             })
+                        logOut()
+                            .then()
+                            .catch(error => {
+                                console.log(error);
 
+                            })
 
                     })
+
+                    navigate('/login' );
 
                 console.log(result.user);
 
@@ -128,22 +137,22 @@ export default function Register() {
                             <span className="label-text font-semibold">Password</span>
                         </label>
                         <div className="relative">
-                        <input
-                            type={showPassword ? "text" : "password"}
-                            placeholder="Create a strong password"
-                            className="input input-bordered w-full"
-                            {...register('password',
-                                {
-                                    required: true, minLength: 6,
-                                    pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{6,}$/
-                                })}
-                        />
-                          <span onClick={() => setShowPassword(!showPassword)} className='absolute top-3 right-6 z-10 cursor-pointer'>
+                            <input
+                                type={showPassword ? "text" : "password"}
+                                placeholder="Create a strong password"
+                                className="input input-bordered w-full"
+                                {...register('password',
                                     {
-                                        showPassword ? <FaEyeSlash /> : <FaEye />
-                                    }
+                                        required: true, minLength: 6,
+                                        pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{6,}$/
+                                    })}
+                            />
+                            <span onClick={() => setShowPassword(!showPassword)} className='absolute top-3 right-6 z-10 cursor-pointer'>
+                                {
+                                    showPassword ? <FaEyeSlash /> : <FaEye />
+                                }
 
-                                </span>
+                            </span>
                         </div>
                         {
                             errors.password?.type === 'required' && <p className='text-red-500 text-sm'>Password is required</p>

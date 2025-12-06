@@ -11,6 +11,7 @@ import MyParticipatedContest from "../DashboardPages/UserDashboard/MyParticipate
 import MyWinningContest from "../DashboardPages/UserDashboard/MyWinningContest";
 import AllContestPage from "../Pages/AllContestPage";
 import LoginPage from "../Pages/Loginpage";
+import PrivateRoute from "./PrivateRoute";
 
 
 export const router = createBrowserRouter([
@@ -38,7 +39,9 @@ export const router = createBrowserRouter([
   },
   {
     path:'dashboard',
-    Component: DashboardLayout,
+    element: <PrivateRoute>
+        <DashboardLayout></DashboardLayout>
+    </PrivateRoute>,
     children: [
         {
             path:'manage-contests',
