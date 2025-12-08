@@ -17,90 +17,95 @@ import MyCreatedContest from "../DashboardPages/CreatorDashboard/MyCreatedContes
 import ContestDetails from "../Pages/ContestDetails";
 import PaymentSuccess from "../Pages/PaymentSuccess";
 import PaymentCancelled from "../Pages/PaymentCancelled";
+import UpdateContest from "../DashboardPages/CreatorDashboard/updateContest";
 
 
 
 export const router = createBrowserRouter([
-  {
-    path: "/",
-    Component: MainLayout,
-    children: [
-        {
-            index: true,
-            Component: HomePage
-        },
-        {
-            path: 'all-contests',
-            Component: AllContestPage
-        },
-        {
-            path: '/contest-details/:id',
-            element: <PrivateRoute>
-                <ContestDetails></ContestDetails>
-            </PrivateRoute>
-        },
-        {
-            path: 'login',
-            Component: LoginPage
-        },
-        {
-            path: 'register',
-            Component: RegistrationPage
-        },
-        {
-        path: "*",
-        Component: NotFound
-      }
-    ]
-  },
-  {
-    path:'dashboard',
-    element: <PrivateRoute>
-        <DashboardLayout></DashboardLayout>
-    </PrivateRoute>,
-    children: [
-        {
-            path:'manage-contests',
-            Component: ManageContests
-        },
-        {
-            path:'manage-users',
-            Component: ManageUsers
-        },
-        {
-            path:'add-contest',
-            Component: AddContest
-        },
-        {
-            path:'myCreated-contest',
-            Component: MyCreatedContest
-        },
-        {
-            path:'submitted-tasks',
-            Component: SubmittedTasks
-        },
-        {
-            path:'myParticipated-contest',
-            Component: MyParticipatedContest
-        },
-        {
-            path:'my-profile',
-            Component: SubmittedTasks
-        },
-        {
-            path:'myWinning-contest',
-            Component: MyWinningContest
-        },
-        {
-            path:'payment-success',
-            Component: PaymentSuccess
-        },
-        {
-            path: 'payment-cancelled',
-            Component: PaymentCancelled
-           },
+    {
+        path: "/",
+        Component: MainLayout,
+        children: [
+            {
+                index: true,
+                Component: HomePage
+            },
+            {
+                path: 'all-contests',
+                Component: AllContestPage
+            },
+            {
+                path: '/contest-details/:id',
+                element: <PrivateRoute>
+                    <ContestDetails></ContestDetails>
+                </PrivateRoute>
+            },
+            {
+                path: 'login',
+                Component: LoginPage
+            },
+            {
+                path: 'register',
+                Component: RegistrationPage
+            },
+            {
+                path: "*",
+                Component: NotFound
+            }
+        ]
+    },
+    {
+        path: 'dashboard',
+        element: <PrivateRoute>
+            <DashboardLayout></DashboardLayout>
+        </PrivateRoute>,
+        children: [
+            {
+                path: 'manage-contests',
+                Component: ManageContests
+            },
+            {
+                path: 'manage-users',
+                Component: ManageUsers
+            },
+            {
+                path: 'add-contest',
+                Component: AddContest
+            },
+            {
+                path: 'myCreated-contest',
+                Component: MyCreatedContest
+            },
+            {
+                path: 'contest/:id',
+                Component: UpdateContest,
+            },
+            {
+                path: 'submitted-tasks',
+                Component: SubmittedTasks
+            },
+            {
+                path: 'myParticipated-contest',
+                Component: MyParticipatedContest
+            },
+            {
+                path: 'my-profile',
+                Component: SubmittedTasks
+            },
+            {
+                path: 'myWinning-contest',
+                Component: MyWinningContest
+            },
+            {
+                path: 'payment-success',
+                Component: PaymentSuccess
+            },
+            {
+                path: 'payment-cancelled',
+                Component: PaymentCancelled
+            },
 
 
-    ]
-  }
+        ]
+    }
 ]);

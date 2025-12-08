@@ -33,6 +33,8 @@ const AddContest = () => {
                     email: user.email,
                     creator: user.displayName,
                     count: 0,
+                    winnerId: null,
+                    winnerName: null,
                 }
 
                 console.log(contestInfo);
