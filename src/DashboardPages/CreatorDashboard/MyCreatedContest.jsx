@@ -56,7 +56,9 @@ const MyCreatedContest = () => {
           <thead className="bg-gray-100 text-gray-700 text-sm md:text-base">
             <tr>
               <th className="p-3 text-left">Image</th>
-              <th className="p-3 text-left">Name</th>
+              <th className="p-3 text-left">Contest Name</th>
+              <th className="p-3 text-left">Type</th>
+              <th className="p-3 text-left">Price</th>
               <th className="p-3 text-left">Status</th>
               <th className="p-3 text-left">Actions</th>
             </tr>
@@ -82,6 +84,12 @@ const MyCreatedContest = () => {
                   {contest.name}
                 </td>
 
+                {/* TYPE */}
+                <td className="p-3 text-gray-600">{contest.contestType}</td>
+
+                {/* PRICE */}
+                <td className="p-3 text-gray-600">${contest.price}</td>
+
                 {/* STATUS */}
                 <td className="p-3">
                   <span
@@ -100,7 +108,6 @@ const MyCreatedContest = () => {
                 {/* ACTIONS */}
                 <td className="p-3">
                   <div className="flex flex-wrap gap-2">
-
                     {/* SUBMISSION */}
                     <button
                       className="flex items-center gap-2 bg-blue-600 text-white px-3 py-1 rounded-md text-sm hover:bg-blue-700"
@@ -112,7 +119,8 @@ const MyCreatedContest = () => {
                     {contest.status === "pending" && (
                       <>
                         {/* EDIT BUTTON */}
-                        <Link to={`/dashboard/contest/${contest._id}`} 
+                        <Link
+                          to={`/dashboard/contest/${contest._id}`}
                           className="flex items-center gap-2 bg-green-600 text-white px-3 py-1 rounded-md text-sm hover:bg-green-700"
                         >
                           <FaEdit /> Edit
@@ -129,7 +137,6 @@ const MyCreatedContest = () => {
                     )}
                   </div>
                 </td>
-
               </tr>
             ))}
           </tbody>
