@@ -5,6 +5,7 @@ import useAxios from "../hooks/useAxios";
 import { FiUsers, FiAward, FiDollarSign } from "react-icons/fi";
 import Countdown from "../components/Countdown/Countdown";
 import useAuth from "../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const ContestDetails = () => {
   const { id } = useParams();
@@ -20,9 +21,34 @@ const ContestDetails = () => {
     },
   });
 
+// const handlePayment = async () => {
+//   if (!user?.email) {
+//     return alert("You must be logged in to register.");
+//   }
+
+//   const paymentInfo = {
+//     contestId: contest._id,
+//     name: contest.name,
+//     price: contest.price,
+//     description: contest.description,
+//     image: contest.image || "",
+//     quantity: 1,
+//     email: user.email,  
+//   };
+
+//   const { data } = await axiosInstance.post('/create-checkout-session', paymentInfo);
+
+//   window.location.assign(data.url);
+// };
+
+
 const handlePayment = async () => {
   if (!user?.email) {
-    return alert("You must be logged in to register.");
+    return Swal.fire({
+      icon: "warning",
+      title: "Not Logged In",
+      text: "You must be logged in to register.",
+    });
   }
 
   const paymentInfo = {
@@ -31,14 +57,31 @@ const handlePayment = async () => {
     price: contest.price,
     description: contest.description,
     image: contest.image || "",
-    quantity: 1,
     email: user.email,  
   };
 
-  const { data } = await axiosInstance.post('/create-checkout-session', paymentInfo);
-
-  window.location.assign(data.url);
+  try {
+    const { data } = await axiosInstance.post('/create-checkout-session', paymentInfo);
+    // if success, redirect to Stripe
+    window.location.assign(data.url);
+  } catch (error) {
+    // if user already paid
+    if (error.response && error.response.data?.error) {
+      Swal.fire({
+        icon: "info",
+        title: "Payment Already Done",
+        text: error.response.data.error,
+      });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Payment Failed",
+        text: "Something went wrong, please try again.",
+      });
+    }
+  }
 };
+
 
 
  
