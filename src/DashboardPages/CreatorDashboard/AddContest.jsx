@@ -4,50 +4,61 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useForm, Controller } from "react-hook-form";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const AddContest = () => {
     const axiosSecure = useAxiosSecure();
-    const {user} = useAuth();
+    const { user } = useAuth();
     const { register, handleSubmit, formState: { errors }, control, reset } = useForm();
 
     const handleAddContest = (data) => {
         const contestImage = data.image[0];
 
         const formData = new FormData();
-        formData.append('image',contestImage);
+        formData.append('image', contestImage);
         reset();
-         axios.post(`https://api.imgbb.com/1/upload?expiration=600&key=${import.meta.env.VITE_IMAGE_HOST_KEY}`, formData)
-         .then(res => {
-            const image = res.data.data.display_url;
+        axios.post(`https://api.imgbb.com/1/upload?expiration=600&key=${import.meta.env.VITE_IMAGE_HOST_KEY}`, formData)
+            .then(res => {
+                const image = res.data.data.display_url;
 
-            const contestInfo = {
-            name: data.contestName,
-            image:image,
-            description:data.description,
-            price:data.price,
-            prizeMoney:data.prizeMoney,
-            taskInstruction:data.instructions,
-            contestType:data.contestType,
-            deadline: data.deadline,
-            email: user.email,
-            count: 0,
-        }
+                const contestInfo = {
+                    name: data.contestName,
+                    image: image,
+                    description: data.description,
+                    price: data.price,
+                    prizeMoney: data.prizeMoney,
+                    taskInstruction: data.instructions,
+                    contestType: data.contestType,
+                    deadline: data.deadline,
+                    email: user.email,
+                    creator: user.displayName,
+                    count: 0,
+                }
 
-        console.log(contestInfo);
+                console.log(contestInfo);
 
-        // add to db 
-        axiosSecure.post('/contest', contestInfo)
-        .then(res => {
-            console.log(res.data);
-            
-        })
+                // add to db 
+                axiosSecure.post('/contest', contestInfo)
+                    .then(res => {
+                        console.log(res.data);
+                        if (res.data.insertedId) {
+                            Swal.fire({
+                                icon: "success",
+                                title: 'Contest added successfully',
+                                timer: 1500,
+                                showConfirmButton: false,
+                            });
 
-        
-            
-         })
-        
-        
-     
+                        }
+
+                    })
+
+
+
+            })
+
+
+
     };
 
     return (
