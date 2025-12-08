@@ -7,6 +7,7 @@ import axios from "axios";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 import GoogleSignIn from "../components/GoogleSignIn/GoogleSignIn";
+import { saveOrUpdateUser } from "../Uitls";
 
 export default function Register() {
     const { createUser, updateUserProfile, logOut } = useAuth();
@@ -18,9 +19,10 @@ export default function Register() {
 
     const handleRegister = (data) => {
 
-        const profileImage = data.photo[0];
+        const {name, email, password, photo} = data;
+        const profileImage = photo[0];
 
-        createUser(data.email, data.password)
+        createUser(email, password)
             .then(result => {
                 Swal.fire({
                     position: "top-center",
@@ -37,7 +39,10 @@ export default function Register() {
                     .then(res => {
                         const photoURL = res.data.data.display_url;
 
-                        updateUserProfile(data.name, photoURL)
+                        // save in  db 
+                         saveOrUpdateUser({name, email, image: photoURL});
+
+                        updateUserProfile(name, photoURL)
                             .then(() => {
                                 console.log('profile updated successfully');
 
@@ -54,6 +59,8 @@ export default function Register() {
                             })
 
                     })
+
+
 
                     navigate('/login' );
 
