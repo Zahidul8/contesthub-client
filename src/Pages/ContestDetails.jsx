@@ -4,9 +4,11 @@ import { useQuery } from "@tanstack/react-query";
 import useAxios from "../hooks/useAxios";
 import { FiUsers, FiAward, FiDollarSign } from "react-icons/fi";
 import Countdown from "../components/Countdown/Countdown";
+import useAuth from "../hooks/useAuth";
 
 const ContestDetails = () => {
   const { id } = useParams();
+  const {user} = useAuth();
   const axiosInstance = useAxios();
   const [timeLeft, setTimeLeft] = useState({});
 
@@ -17,6 +19,31 @@ const ContestDetails = () => {
       return data;
     },
   });
+
+const handlePayment = async () => {
+  if (!user?.email) {
+    return alert("You must be logged in to register.");
+  }
+
+  const paymentInfo = {
+    contestId: contest._id,
+    name: contest.name,
+    price: contest.price,
+    description: contest.description,
+    image: contest.image || "",
+    quantity: 1,
+    email: user.email,  
+  };
+
+  const { data } = await axiosInstance.post('/create-checkout-session', paymentInfo);
+
+  window.location.assign(data.url);
+};
+
+
+ 
+
+
 
   if (isLoading)
     return (
@@ -88,7 +115,7 @@ const ContestDetails = () => {
 
       {/* Register / Pay Button */}
       <div className="text-center">
-        <button disabled={timeLeft.expired? true : false} className="btn bg-gradient-to-r from-primary to-secondary text-white px-12 py-4 text-lg md:text-xl rounded-2xl shadow-xl hover:shadow-2xl transition transform hover:-translate-y-1">
+        <button onClick={handlePayment} disabled={timeLeft.expired? true : false} className="btn bg-gradient-to-r from-primary to-secondary text-white px-12 py-4 text-lg md:text-xl rounded-2xl shadow-xl hover:shadow-2xl transition transform hover:-translate-y-1">
           Register / Pay
         </button>
       </div>

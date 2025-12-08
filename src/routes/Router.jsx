@@ -15,6 +15,8 @@ import PrivateRoute from "./PrivateRoute";
 import NotFound from "../Pages/NotFount";
 import MyCreatedContest from "../DashboardPages/CreatorDashboard/MyCreatedContest";
 import ContestDetails from "../Pages/ContestDetails";
+import PaymentSuccess from "../Pages/PaymentSuccess";
+import PaymentCancelled from "../Pages/PaymentCancelled";
 
 
 
@@ -89,6 +91,15 @@ export const router = createBrowserRouter([
             path:'myWinning-contest',
             Component: MyWinningContest
         },
+        {
+            path:'payment-success',
+            Component: PaymentSuccess
+        },
+        {
+            path: 'payment-cancelled',
+            Component: PaymentCancelled
+           },
+
 
     ]
   }
