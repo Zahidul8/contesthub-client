@@ -45,7 +45,7 @@ const handleLogout = () => {
   <div className="navbar-end">
     {user && <>
     <div className="dropdown dropdown-end">
-  <div tabIndex={0} role="button" className=" m-1"><img className='w-[50px] h-[50px] rounded-full' src={user?.photoURL} alt="" /></div>
+  <div tabIndex={0} role="button" className=" m-1"><img className='w-[50px] h-[50px] rounded-full object-cover' src={user?.photoURL} alt="" /></div>
   <ul tabIndex="-1" className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
     <li className='text-center font-bold text-xl'>{user?.displayName}</li>
     <li><Link className='btn btn-primary rounded-md mt-2' to='/dashboard'>Dashboard</Link></li>
