@@ -1,9 +1,11 @@
 import React from 'react';
+import WinPercentageChart from './WinParcentageChart';
+
 
 const MyProfile = () => {
     return (
         <div>
-            <h1>My profile</h1>
+            <WinPercentageChart></WinPercentageChart>
         </div>
     );
 };

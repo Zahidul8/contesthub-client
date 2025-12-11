@@ -19,6 +19,7 @@ import PaymentSuccess from "../Pages/PaymentSuccess";
 import PaymentCancelled from "../Pages/PaymentCancelled";
 import UpdateContest from "../DashboardPages/CreatorDashboard/updateContest";
 import SubmissionDetails from "../DashboardPages/CreatorDashboard/SubmissionDetails";
+import MyProfile from "../DashboardPages/UserDashboard/MyProfile";
 
 
 
@@ -95,7 +96,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'my-profile',
-                Component: SubmittedTasks
+                Component:MyProfile,
             },
             {
                 path: 'myWinning-contest',
