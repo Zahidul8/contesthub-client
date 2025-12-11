@@ -79,8 +79,10 @@ const ContestDetails = () => {
 
     const taskInfo = {
       contestId: contest._id,
+      name: contest.name,
       user_name: user.displayName,
       user_email: user.email,
+      creator_email: contest.email,
       submissionTask: data.task,
     }
 
@@ -253,8 +255,8 @@ const ContestDetails = () => {
                 </button>
 
               </div>
-            </form>
 
+            </form>
           </div>
         </dialog>
 

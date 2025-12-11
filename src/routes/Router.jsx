@@ -18,6 +18,7 @@ import ContestDetails from "../Pages/ContestDetails";
 import PaymentSuccess from "../Pages/PaymentSuccess";
 import PaymentCancelled from "../Pages/PaymentCancelled";
 import UpdateContest from "../DashboardPages/CreatorDashboard/updateContest";
+import SubmissionDetails from "../DashboardPages/CreatorDashboard/SubmissionDetails";
 
 
 
@@ -83,6 +84,10 @@ export const router = createBrowserRouter([
             {
                 path: 'submitted-tasks',
                 Component: SubmittedTasks
+            },
+            {
+                path: 'submission-details/:id',
+                Component: SubmissionDetails
             },
             {
                 path: 'myParticipated-contest',
