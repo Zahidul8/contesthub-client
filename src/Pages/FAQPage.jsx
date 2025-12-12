@@ -42,43 +42,54 @@ const FAQPage = () => {
   };
 
   return (
-    <section className="min-h-screen py-16 px-6 bg-gradient-to-b from-yellow-100 to-yellow-300">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-extrabold text-center text-gray-800 mb-6">
+    <section className="min-h-screen py-16 px-6 
+      bg-gradient-to-br from-yellow-300 via-yellow-200 to-yellow-400 
+      relative overflow-hidden">
+
+      {/* Decorative gradient circles */}
+      <div className="absolute top-10 left-10 w-32 h-32 bg-yellow-500 opacity-20 rounded-full blur-2xl"></div>
+      <div className="absolute bottom-20 right-10 w-40 h-40 bg-orange-400 opacity-20 rounded-full blur-2xl"></div>
+
+      <div className="max-w-4xl mx-auto relative z-10">
+        
+        <h2 className="text-4xl md:text-5xl font-extrabold text-center text-gray-900 mb-6">
           Frequently Asked Questions
         </h2>
+
         <p className="text-center text-gray-700 mb-12 md:text-lg">
           Have questions? We have answers. Learn how ContestHub works!
         </p>
 
-        <div className="space-y-4">
+        <div className="space-y-5">
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className="bg-white p-6 rounded-2xl shadow-md transition-all duration-300 hover:shadow-lg"
+              className="bg-white/80 backdrop-blur-md p-6 rounded-2xl shadow-lg 
+              transition-all duration-300 hover:shadow-xl border border-white"
             >
               <button
                 className="w-full flex items-center justify-between text-left"
                 onClick={() => toggleFAQ(index)}
               >
-                <span className="text-lg font-semibold text-gray-800">
+                <span className="text-lg font-semibold text-gray-900">
                   {faq.question}
                 </span>
+
                 <FaChevronDown
-                  className={`transition-transform duration-300 ${
-                    openIndex === index ? "rotate-180" : ""
-                  }`}
+                  className={`transition-transform duration-300 text-gray-700 
+                  ${openIndex === index ? "rotate-180" : ""}`}
                 />
               </button>
 
               {openIndex === index && (
-                <p className="mt-3 text-gray-600 leading-relaxed">
+                <p className="mt-3 text-gray-700 leading-relaxed">
                   {faq.answer}
                 </p>
               )}
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );

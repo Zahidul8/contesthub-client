@@ -5,8 +5,8 @@ import { Link } from 'react-router';
 const Logo = () => {
     return (
         <div>
-             <Link to='/' className=" font-bold text-2xl flex items-center">
-    <img className='w-[80px]' src={logo} alt="" />
+             <Link to='/' className=" font-bold text-2xl flex items-center gap-1">
+    <img className='w-18 rounded-full ' src={logo} alt="" />
     ContestHub
     </Link>
         </div>
