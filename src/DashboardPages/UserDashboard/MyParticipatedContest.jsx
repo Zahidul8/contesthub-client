@@ -4,6 +4,7 @@ import useAuth from '../../hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
 import { FiArrowRight } from 'react-icons/fi';
 import { useNavigate } from 'react-router';
+import Loading from '../../components/Loading/Loading';
 
 const MyParticipatedContest = () => {
     const axiosSecure = useAxiosSecure();
@@ -20,7 +21,7 @@ const MyParticipatedContest = () => {
     });
 
     if (isLoading) {
-        return <p className="text-center py-10 text-gray-500">Loading...</p>;
+        return <Loading></Loading>;
     }
 
     return (

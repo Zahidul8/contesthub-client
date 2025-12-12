@@ -3,6 +3,7 @@ import useAuth from '../../hooks/useAuth';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import { FiDollarSign, FiAward } from 'react-icons/fi';
+import Loading from '../../components/Loading/Loading';
 
 const MyWinningContest = () => {
   const { user } = useAuth();
@@ -18,9 +19,7 @@ const MyWinningContest = () => {
 
   if (isLoading) {
     return (
-      <p className="text-center py-20 text-xl text-gray-500">
-        Loading your winning contests...
-      </p>
+     <Loading></Loading>
     );
   }
 

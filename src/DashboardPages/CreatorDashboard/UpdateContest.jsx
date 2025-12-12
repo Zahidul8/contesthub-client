@@ -6,6 +6,7 @@ import { useForm, Controller } from "react-hook-form";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Swal from "sweetalert2";
+import Loading from "../../components/Loading/Loading";
 
 const UpdateContest = () => {
   const axiosSecure = useAxiosSecure();
@@ -65,7 +66,7 @@ const UpdateContest = () => {
     }
   };
 
-  if (isLoading) return <p className="text-center py-10">Loading...</p>;
+  if (isLoading) return <Loading></Loading>;
 
   return (
     <div className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-xl mt-6">

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FaSearch, FaDollarSign, FaClock } from "react-icons/fa";
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../hooks/useAxios";
+import Loading from "../Loading/Loading";
 
 const Banner = () => {
   const [query, setQuery] = useState("");
@@ -78,7 +79,7 @@ const Banner = () => {
 
       {/* ===== Search Results ===== */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        {isLoading && <p className="text-center text-gray-500">Loading...</p>}
+        {isLoading && <p className="text-center text-gray-500"><Loading></Loading></p>}
 
         {!isLoading && searchQuery && contests.length === 0 && (
           <p className="text-center text-gray-500">No contests found.</p>

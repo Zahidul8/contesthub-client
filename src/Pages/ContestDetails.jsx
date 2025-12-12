@@ -7,6 +7,7 @@ import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import Loading from "../components/Loading/Loading";
 
 const ContestDetails = () => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm()
@@ -97,7 +98,7 @@ const ContestDetails = () => {
   }
 
   if (isLoading) return (
-    <p className="text-center py-20 text-xl text-gray-500">Loading...</p>
+    <Loading></Loading>
   );
 
   return (

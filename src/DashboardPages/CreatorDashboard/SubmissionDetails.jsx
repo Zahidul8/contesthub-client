@@ -4,6 +4,7 @@ import { useParams } from 'react-router';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { FiUser, FiMail, FiFileText, FiCalendar } from "react-icons/fi";
 import Swal from "sweetalert2";
+import Loading from '../../components/Loading/Loading';
 
 const SubmissionDetails = () => {
     const { id } = useParams();
@@ -56,7 +57,7 @@ const SubmissionDetails = () => {
     };
 
     if (isLoading) {
-        return <p className="text-center py-10 text-gray-500">Loading...</p>;
+        return <Loading></Loading>;
     }
 
     return (

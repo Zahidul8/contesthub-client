@@ -5,6 +5,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { FaTrash, FaEdit, FaArrowRight } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { Link } from "react-router";
+import Loading from "../../components/Loading/Loading";
 
 const MyCreatedContest = () => {
   const { user } = useAuth();
@@ -43,7 +44,7 @@ const MyCreatedContest = () => {
     });
   };
 
-  if (isLoading) return <p className="text-center py-10">Loading...</p>;
+  if (isLoading) return <Loading></Loading>;
 
   return (
     <div className="p-4 md:p-6">

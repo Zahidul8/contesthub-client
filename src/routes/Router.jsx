@@ -20,6 +20,11 @@ import PaymentCancelled from "../Pages/PaymentCancelled";
 import UpdateContest from "../DashboardPages/CreatorDashboard/updateContest";
 import SubmissionDetails from "../DashboardPages/CreatorDashboard/SubmissionDetails";
 import MyProfile from "../DashboardPages/UserDashboard/MyProfile";
+import AdminRoutes from "./AdminRoutes";
+import CreatorRoutes from "./CreatorRoutes";
+import DashboardPage from "../DashboardPages/DashboardPage";
+import AboutUs from "../Pages/AboutUs";
+import FAQPage from "../Pages/FAQPage";
 
 
 
@@ -37,6 +42,14 @@ export const router = createBrowserRouter([
                 Component: AllContestPage
             },
             {
+                path: 'aboutUs',
+                Component: AboutUs
+            },
+            {
+                path: 'faq',
+                Component: FAQPage
+            },
+            {
                 path: '/contest-details/:id',
                 element: <PrivateRoute>
                     <ContestDetails></ContestDetails>
@@ -52,7 +65,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: "*",
-                Component: NotFound
+                Component: NotFound,
             }
         ]
     },
@@ -63,32 +76,54 @@ export const router = createBrowserRouter([
         </PrivateRoute>,
         children: [
             {
+                index: true,
+                element: <DashboardPage></DashboardPage>
+            },
+            {
                 path: 'manage-contests',
-                Component: ManageContests
+                element: <AdminRoutes>
+                    <ManageContests></ManageContests>
+                </AdminRoutes>
+
             },
             {
                 path: 'manage-users',
-                Component: ManageUsers
+                element: <AdminRoutes>
+                    <ManageUsers></ManageUsers>
+                </AdminRoutes>
             },
             {
                 path: 'add-contest',
-                Component: AddContest
+                element: <CreatorRoutes>
+                    <AddContest></AddContest>
+                </CreatorRoutes>
+
             },
             {
                 path: 'myCreated-contest',
-                Component: MyCreatedContest
+                element: <CreatorRoutes>
+                    <MyCreatedContest></MyCreatedContest>
+                </CreatorRoutes>
+
             },
             {
                 path: 'contest/:id',
-                Component: UpdateContest,
+                element: <CreatorRoutes>
+                    <UpdateContest></UpdateContest>
+                </CreatorRoutes>
             },
             {
                 path: 'submitted-tasks',
-                Component: SubmittedTasks
+                 element: <CreatorRoutes>
+                    <SubmittedTasks></SubmittedTasks>
+                </CreatorRoutes>
+                
             },
             {
                 path: 'submission-details/:id',
-                Component: SubmissionDetails
+                 element: <CreatorRoutes>
+                    <SubmissionDetails></SubmissionDetails>
+                </CreatorRoutes>              
             },
             {
                 path: 'myParticipated-contest',
@@ -96,7 +131,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'my-profile',
-                Component:MyProfile,
+                Component: MyProfile,
             },
             {
                 path: 'myWinning-contest',

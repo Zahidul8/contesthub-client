@@ -9,7 +9,8 @@ const Navbar = () => {
     const links = <>
      <li><NavLink to='/'>Home</NavLink></li>
      <li><NavLink to='/all-contests'>All Contests</NavLink></li>
-     <li><NavLink to='/'>Extra sections</NavLink></li>
+     <li><NavLink to='/aboutUs'>About us</NavLink></li>
+     <li><NavLink to='/faq'>FAQ</NavLink></li>
     </>
 
 
@@ -43,7 +44,9 @@ const handleLogout = () => {
     </ul>
   </div>
   <div className="navbar-end">
-    {user && <>
+    {
+    
+   user? 
     <div className="dropdown dropdown-end">
   <div tabIndex={0} role="button" className=" m-1"><img className='w-[50px] h-[50px] rounded-full object-cover' src={user?.photoURL} alt="" /></div>
   <ul tabIndex="-1" className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
@@ -52,9 +55,9 @@ const handleLogout = () => {
     <li><button className='btn btn-primary rounded-md mt-2' onClick={handleLogout}>Logout</button></li>
   
   </ul>
-</div>
+</div> :  <Link className='btn btn-primary' to='/login'>Login</Link>
     
-    </>}
+    }
   </div>
 </div>
     );

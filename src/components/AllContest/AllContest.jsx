@@ -6,94 +6,63 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
 const AllContest = () => {
-     const axiosInstance = useAxios();
-     const [type, setType] = useState(' ')
+  const axiosInstance = useAxios();
+  const [type, setType] = useState(' ');
 
-    const { data: contests = [] } = useQuery({
-        queryKey: ['contests', type],
-        queryFn: async () => {
-            const { data } = await axiosInstance.get(`/contests_all?type=${type}`)
-            return data;
-        }
-    })
+  const { data: contests = [] } = useQuery({
+    queryKey: ['contests', type],
+    queryFn: async () => {
+      const { data } = await axiosInstance.get(`/contests_all?type=${type}`);
+      return data;
+    },
+  });
 
-    console.log(type);
-    
-    return (
-        <div>
-             <h1 className='text-4xl font-bold text-center my-8'>All Contests</h1>
+  return (
+    <div className="min-h-screen bg-gray-50 py-12 px-4">
+      {/* Title */}
+      <h1 className="text-4xl md:text-5xl font-extrabold text-center text-gray-800 mb-10">
+        Explore All Contests
+      </h1>
+      <p className="text-center text-gray-600 max-w-2xl mx-auto mb-12 text-lg">
+        Filter contests by category and find the perfect one to participate in!
+      </p>
 
-         <Tabs>
-    <TabList className="flex gap-x-20 justify-center my-8 flex-wrap">
-      <Tab  onClick={() => setType('Drawing')}>Drawing</Tab>
-      <Tab  onClick={() => setType('Writing')}>Writing</Tab>
-      <Tab  onClick={() => setType('Coding')}>Coding</Tab>
-      <Tab  onClick={() => setType('Design')}>Design</Tab>
-      <Tab  onClick={() => setType('Photography')}>Photography</Tab>
-    </TabList>
+      {/* Tabs */}
+      <Tabs>
+        <TabList className="flex flex-wrap gap-4 justify-center mb-10">
+          {['Drawing', 'Writing', 'Coding', 'Design', 'Photography'].map((item) => (
+            <Tab
+              key={item}
+              onClick={() => setType(item)}
+              className="px-6 py-2 bg-white rounded-full border border-gray-300 text-gray-700 cursor-pointer hover:bg-blue-600 hover:text-white transition shadow-md"
+              selectedClassName="!bg-blue-600 !text-white !border-blue-600 shadow-lg"
+            >
+              {item}
+            </Tab>
+          ))}
+        </TabList>
 
-    <TabPanel>
-      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
-
-            {
-                contests.map(contest =>  <ContestCard key={contest._id} contest={contest}></ContestCard>)
-            }
-           
-
-        </div>
-    </TabPanel>
-
-    <TabPanel>
-      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
-
-            {
-                contests.map(contest =>  <ContestCard key={contest._id} contest={contest}></ContestCard>)
-            }
-           
-
-        </div>
-    </TabPanel>
-
-    <TabPanel>
-      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
-
-            {
-                contests.map(contest =>  <ContestCard key={contest._id} contest={contest}></ContestCard>)
-            }
-           
-
-        </div>
-    </TabPanel>
-
-    <TabPanel>
-      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
-
-            {
-                contests.map(contest =>  <ContestCard key={contest._id} contest={contest}></ContestCard>)
-            }
-           
-
-        </div>
-    </TabPanel>
-    
-    <TabPanel>
-      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
-
-            {
-                contests.map(contest =>  <ContestCard key={contest._id} contest={contest}></ContestCard>)
-            }
-           
-
-        </div>
-    </TabPanel>
-  </Tabs>
-
-
-
-        
-
-        </div>
-    );
+        {/* Panels */}
+        {[1, 2, 3, 4, 5].map((_, index) => (
+          <TabPanel key={index}>
+            {contests.length === 0 ? (
+              <p className="text-center text-gray-600 text-lg mt-10">
+                No contests found in this category.
+              </p>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                {contests.map((contest) => (
+                  <div className="transform hover:scale-[1.03] transition">
+                    <ContestCard key={contest._id} contest={contest} />
+                  </div>
+                ))}
+              </div>
+            )}
+          </TabPanel>
+        ))}
+      </Tabs>
+    </div>
+  );
 };
 
 export default AllContest;

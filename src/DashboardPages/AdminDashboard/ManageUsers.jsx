@@ -3,6 +3,7 @@ import React from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { FaUserEdit } from "react-icons/fa";
+import Loading from "../../components/Loading/Loading";
 
 const ManageUsers = () => {
   const axiosSecure = useAxiosSecure();
@@ -44,7 +45,7 @@ const ManageUsers = () => {
   };
 
   if (isLoading) {
-    return <p className="text-center py-10 text-lg font-semibold">Loading...</p>;
+    return <Loading></Loading>;
   }
 
   return (

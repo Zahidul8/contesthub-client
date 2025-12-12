@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { FaEllipsisV } from "react-icons/fa";
 import { useState } from "react";
+import Loading from "../../components/Loading/Loading";
 
 const ManageContests = () => {
   const axiosSecure = useAxiosSecure();
@@ -28,7 +29,7 @@ const ManageContests = () => {
   }
 };
 
-  if (isLoading) return <p className="text-center mt-20">Loading...</p>;
+  if (isLoading) return <Loading></Loading>;
 
   return (
    <div className="p-5 w-full">
