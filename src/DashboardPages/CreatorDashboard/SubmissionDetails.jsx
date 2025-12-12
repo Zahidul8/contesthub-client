@@ -32,7 +32,8 @@ const SubmissionDetails = () => {
 
             const { data } = await axiosSecure.patch(`/contest/declare-winner/${submission.contestId}`, {
                 winnerName: submission.user_name,
-                winnerEmail: submission.user_email
+                winnerEmail: submission.user_email,
+                winnerImage: submission.user_image,
             });
             if (data.modifiedCount) {
 

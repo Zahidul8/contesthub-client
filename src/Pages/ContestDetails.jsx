@@ -68,6 +68,7 @@ const ContestDetails = () => {
       name: contest.name,
       user_name: user.displayName,
       user_email: user.email,
+      user_image: user.photoURL,
       creator_email: contest.email,
       submissionTask: data.task,
     }

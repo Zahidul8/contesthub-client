@@ -5,10 +5,12 @@ import { useForm, Controller } from "react-hook-form";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router";
 
 const AddContest = () => {
     const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
+    const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors }, control, reset } = useForm();
 
     const handleAddContest = (data) => {
@@ -35,6 +37,8 @@ const AddContest = () => {
                     count: 0,
                     winnerName: null,
                     winnerEmail: null,
+                    winnerImage: null,
+                    declared_at: null,
                 }
 
                 console.log(contestInfo);
@@ -44,6 +48,7 @@ const AddContest = () => {
                     .then(res => {
                         console.log(res.data);
                         if (res.data.insertedId) {
+                            navigate('/dashboard/myCreated-contest');
                             Swal.fire({
                                 icon: "success",
                                 title: 'Contest added successfully',
