@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 
-const Countdown = ({ deadline,setTimeLeft,timeLeft }) => {
-
+const Countdown = ({ deadline, setTimeLeft, timeLeft }) => {
   useEffect(() => {
     if (!deadline) return;
 
@@ -26,25 +25,36 @@ const Countdown = ({ deadline,setTimeLeft,timeLeft }) => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [deadline,setTimeLeft]);
+  }, [deadline, setTimeLeft]);
 
   if (timeLeft.expired) {
-    return <p className="text-red-500 font-bold">Contest Ended</p>;
+    return (
+      <p className="text-red-500 font-bold text-center text-lg md:text-xl">
+        Contest Ended
+      </p>
+    );
   }
 
+  const timeBlockClasses =
+    "flex flex-col items-center justify-center px-4 py-3 md:px-6 md:py-4 rounded-2xl bg-gradient-to-r from-yellow-400 to-yellow-500 shadow-lg transform transition-all hover:scale-105";
+
   return (
-    <div className="flex gap-4 text-center text-white font-bold mt-4">
-      <div className="bg-primary px-4 py-2 rounded">
-        {timeLeft.days} <span className="text-xs">Days</span>
+    <div className="flex flex-wrap justify-center gap-4 mt-4">
+      <div className={timeBlockClasses}>
+        <span className="text-2xl md:text-3xl font-bold">{timeLeft.days}</span>
+        <span className="text-xs md:text-sm text-gray-100">Days</span>
       </div>
-      <div className="bg-primary px-4 py-2 rounded">
-        {timeLeft.hours} <span className="text-xs">Hours</span>
+      <div className={timeBlockClasses}>
+        <span className="text-2xl md:text-3xl font-bold">{timeLeft.hours}</span>
+        <span className="text-xs md:text-sm text-gray-100">Hours</span>
       </div>
-      <div className="bg-primary px-4 py-2 rounded">
-        {timeLeft.minutes} <span className="text-xs">Minutes</span>
+      <div className={timeBlockClasses}>
+        <span className="text-2xl md:text-3xl font-bold">{timeLeft.minutes}</span>
+        <span className="text-xs md:text-sm text-gray-100">Minutes</span>
       </div>
-      <div className="bg-primary px-4 py-2 rounded">
-        {timeLeft.seconds} <span className="text-xs">Seconds</span>
+      <div className={timeBlockClasses}>
+        <span className="text-2xl md:text-3xl font-bold">{timeLeft.seconds}</span>
+        <span className="text-xs md:text-sm text-gray-100">Seconds</span>
       </div>
     </div>
   );
