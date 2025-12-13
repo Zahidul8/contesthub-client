@@ -25,6 +25,7 @@ import CreatorRoutes from "./CreatorRoutes";
 import DashboardPage from "../DashboardPages/DashboardPage";
 import AboutUs from "../Pages/AboutUs";
 import FAQPage from "../Pages/FAQPage";
+import Leaderboard from "../Pages/Leaderboard";
 
 
 
@@ -48,6 +49,10 @@ export const router = createBrowserRouter([
             {
                 path: 'faq',
                 Component: FAQPage
+            },
+            {
+                path: 'leaderboard',
+                Component: Leaderboard,
             },
             {
                 path: '/contest-details/:id',

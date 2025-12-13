@@ -112,8 +112,8 @@ const Banner = () => {
 
                   <div className="mt-3 flex justify-between items-center text-gray-700">
                     <div className="flex items-center gap-1">
-                      <FaDollarSign className="text-yellow-500" />{" "}
-                      <span className="font-semibold">${contest.prizeMoney}</span>
+                      
+                      Prize Money:<span className="font-semibold flex items-center"> <FaDollarSign className="text-yellow-500" />{" "}{contest.prizeMoney}</span>
                     </div>
                     <div className="flex items-center gap-1">
                       <FaClock className="text-primary" />{" "}

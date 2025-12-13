@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useForm, Controller } from "react-hook-form";
 import DatePicker from "react-datepicker";
@@ -11,6 +11,7 @@ import Loading from "../../components/Loading/Loading";
 const UpdateContest = () => {
   const axiosSecure = useAxiosSecure();
   const { id } = useParams();
+  const navigate = useNavigate();
   const [deadline, setDeadline] = useState(null);
 
   // Load contest data
@@ -49,6 +50,7 @@ const UpdateContest = () => {
       const res = await axiosSecure.patch(`/contest/${id}`, updatedContest);
 
       if (res.data.modifiedCount) {
+        navigate('/dashboard/myCreated-contest')
         Swal.fire({
           icon: "success",
           title: "Contest Updated Successfully!",

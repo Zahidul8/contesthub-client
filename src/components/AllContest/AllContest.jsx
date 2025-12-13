@@ -18,7 +18,7 @@ const AllContest = () => {
   });
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4">
+    <div className="min-h-screen  py-12 px-4">
       {/* Title */}
       <h1 className="text-4xl md:text-5xl font-extrabold text-center text-gray-800 mb-10">
         Explore All Contests

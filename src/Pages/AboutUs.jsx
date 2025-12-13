@@ -3,7 +3,7 @@ import { FaUsers, FaTrophy, FaLightbulb, FaRocket, FaDollarSign } from "react-ic
 
 const AboutUs = () => {
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="min-h-screen">
       {/* HERO SECTION */}
       <section className="relative bg-gradient-to-r from-purple-600 to-blue-600 text-white py-24 px-6">
         <div className="max-w-5xl mx-auto text-center">
@@ -44,7 +44,7 @@ const AboutUs = () => {
       </section>
 
       {/* MISSION VALUES */}
-      <section className="bg-white py-16 px-6">
+      <section className=" py-16 px-6">
         <h2 className="text-3xl font-bold text-center mb-12">Our Mission & Values</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -78,25 +78,25 @@ const AboutUs = () => {
       </section>
 
       {/* OUR IMPACT */}
-      <section className="py-16 px-6 bg-gradient-to-br from-blue-50 to-purple-100">
-        <h2 className="text-3xl font-bold text-center mb-12">Our Impact</h2>
+      <section className="py-16 px-6 bg-gradient-to-br from-lime-50 to-lime-100">
+        <h2 className="text-3xl font-bold text-center mb-12 text-black">Our Impact</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto text-center">
           <div className="bg-white p-8 rounded-2xl shadow-lg">
             <FaUsers className="text-blue-600 text-5xl mx-auto mb-4" />
-            <h3 className="text-3xl font-bold">25,000+</h3>
+            <h3 className="text-3xl font-bold text-black">25,000+</h3>
             <p className="text-gray-600 mt-2">Active Participants</p>
           </div>
 
           <div className="bg-white p-8 rounded-2xl shadow-lg">
             <FaTrophy className="text-yellow-500 text-5xl mx-auto mb-4" />
-            <h3 className="text-3xl font-bold">1,200+</h3>
+            <h3 className="text-3xl font-bold text-black">1,200+</h3>
             <p className="text-gray-600 mt-2">Successful Contests</p>
           </div>
 
           <div className="bg-white p-8 rounded-2xl shadow-lg">
             <FaDollarSign className="text-green-600 text-5xl mx-auto mb-4" />
-            <h3 className="text-3xl font-bold">$90,000+</h3>
+            <h3 className="text-3xl font-bold text-black">$90,000+</h3>
             <p className="text-gray-600 mt-2">Prize Money Awarded</p>
           </div>
         </div>

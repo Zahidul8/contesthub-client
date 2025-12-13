@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import { FiUsers, FiAward, FiDollarSign, FiTag } from "react-icons/fi";
 import Countdown from "../components/Countdown/Countdown";
@@ -13,6 +13,7 @@ const ContestDetails = () => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm()
   const { id } = useParams();
   const { user } = useAuth();
+  const navigate = useNavigate();
   const modalRef = useRef();
   const axiosSecure = useAxiosSecure();
   const [timeLeft, setTimeLeft] = useState({});
@@ -78,6 +79,7 @@ const ContestDetails = () => {
       .then(res => {
         if (res.data.insertedId) {
           modalRef.current.close();
+          navigate('/');
           reset();
           Swal.fire({
             position: "top-center",
@@ -88,6 +90,7 @@ const ContestDetails = () => {
           });
         } else {
           modalRef.current.close();
+          navigate('/');
           reset();
           Swal.fire({
             icon: "info",

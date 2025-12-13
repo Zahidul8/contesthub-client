@@ -8,8 +8,30 @@ import {
   FaUserCircle,
 } from "react-icons/fa";
 import { Link } from "react-router";
+import useAxios from "../../hooks/useAxios";
+import { useQuery } from "@tanstack/react-query";
+import useAuth from "../../hooks/useAuth";
+import Loading from "../../components/Loading/Loading";
 
 const UserDashboard = () => {
+
+  const {user} = useAuth();
+    const axiosInstance = useAxios();
+
+  const { data: winner = {}, isLoading } = useQuery({
+    queryKey: ["winner", user?.email],
+    queryFn: async () => {
+      const { data } = await axiosInstance.get(`/win-user?email=${user?.email}`);
+      return data;
+    },
+  });
+
+
+   if (isLoading) {
+    return (
+      <Loading></Loading>
+    );
+  }
   return (
     <section className="min-h-screen bg-gray-100 py-10 px-6">
       
@@ -31,7 +53,7 @@ const UserDashboard = () => {
           <FaTasks className="text-purple-600 text-4xl" />
           <div>
             <p className="text-gray-600">Participated</p>
-            <h2 className="text-2xl font-bold">12</h2>
+            <h2 className="text-2xl font-bold">{winner.participatedCount}</h2>
           </div>
         </div>
 
@@ -40,7 +62,7 @@ const UserDashboard = () => {
           <FaMoneyBillWave className="text-green-600 text-4xl" />
           <div>
             <p className="text-gray-600">Prize Money Won</p>
-            <h2 className="text-2xl font-bold">$850</h2>
+            <h2 className="text-2xl font-bold">${winner.totalPrize}</h2>
           </div>
         </div>
 
@@ -49,7 +71,7 @@ const UserDashboard = () => {
           <FaTrophy className="text-yellow-500 text-4xl" />
           <div>
             <p className="text-gray-600">Wins</p>
-            <h2 className="text-2xl font-bold">3</h2>
+            <h2 className="text-2xl font-bold">{winner.totalWins}</h2>
           </div>
         </div>
 
@@ -58,7 +80,7 @@ const UserDashboard = () => {
           <FaClock className="text-blue-600 text-4xl" />
           <div>
             <p className="text-gray-600">Pending Results</p>
-            <h2 className="text-2xl font-bold">4</h2>
+            <h2 className="text-2xl font-bold">{winner.participatedCount - winner.totalWins}</h2>
           </div>
         </div>
       </div>

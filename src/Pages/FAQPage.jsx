@@ -43,7 +43,7 @@ const FAQPage = () => {
 
   return (
     <section className="min-h-screen py-16 px-6 
-      bg-gradient-to-br from-yellow-300 via-yellow-200 to-yellow-400 
+      bg-gradient-to-br from-[#53629E] to-[#53629E]
       relative overflow-hidden">
 
       {/* Decorative gradient circles */}

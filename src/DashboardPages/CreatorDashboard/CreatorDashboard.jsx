@@ -7,6 +7,7 @@ import {
   FaUsers,
   FaStar,
 } from "react-icons/fa";
+import { Link } from "react-router";
 
 const CreatorDashboard = () => {
   return (
@@ -92,9 +93,9 @@ const CreatorDashboard = () => {
           <div className="flex flex-col items-center">
             <FaPlusCircle className="text-6xl mb-4" />
             <p className="text-lg">Start a new creative challenge</p>
-            <button className="mt-4 bg-white text-orange-600 px-6 py-2 rounded-full font-bold shadow-md hover:scale-105 transition">
+            <Link to={'/dashboard/add-contest'}  className="mt-4 bg-white text-orange-600 px-6 py-2 rounded-full font-bold shadow-md hover:scale-105 transition">
               Create Now
-            </button>
+            </Link>
           </div>
         </div>
       </div>

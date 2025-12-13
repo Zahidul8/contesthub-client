@@ -32,7 +32,7 @@ const HowItWorks = () => {
         {steps.map((step, index) => (
           <div
             key={index}
-            className="group bg-white/30 backdrop-blur-xl p-8 rounded-3xl shadow-[0_10px_30px_rgba(0,0,0,0.1)] border border-white/40 hover:shadow-[0_15px_40px_rgba(0,0,0,0.15)] transition-all duration-500"
+            className="group bg-white/80 backdrop-blur-xl p-8 rounded-3xl shadow-[0_10px_30px_rgba(0,0,0,0.1)] border border-white/40 hover:shadow-[0_15px_40px_rgba(0,0,0,0.15)] transition-all duration-500"
           >
             {/* Icon */}
             <div className="flex justify-center mb-6">
