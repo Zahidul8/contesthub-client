@@ -30,7 +30,12 @@ export default function Login() {
 
             })
             .catch(error => {
-                console.log(error.message);
+               if (error.code === "auth/invalid-credential") {
+                 Swal.fire({
+                    icon: "info",
+                    title: "Invalid Email or Password",
+                });
+               }
 
             })
 
