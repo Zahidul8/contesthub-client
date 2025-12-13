@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { FiUser, FiMail, FiFileText, FiCalendar } from "react-icons/fi";
 import Swal from "sweetalert2";
@@ -9,6 +9,7 @@ import Loading from '../../components/Loading/Loading';
 const SubmissionDetails = () => {
     const { id } = useParams();
     const axiosSecure = useAxiosSecure();
+    const navigate = useNavigate();
 
     const { data: submission = {}, isLoading } = useQuery({
         queryKey: ['submission', id],
@@ -37,7 +38,7 @@ const SubmissionDetails = () => {
                 winnerImage: submission.user_image,
             });
             if (data.modifiedCount) {
-
+                navigate('/dashboard/submitted-tasks');
                 Swal.fire({
                     icon: 'success',
                     title: 'Winner Declared',

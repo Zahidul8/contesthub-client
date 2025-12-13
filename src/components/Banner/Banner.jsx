@@ -45,8 +45,8 @@ const Banner = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-black/70"></div>
 
         {/* Content */}
-        <div className="relative z-10 max-w-3xl mx-auto text-center px-6">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg">
+        <div className="relative max-w-3xl mx-auto text-center px-6">
+          <h1 className="banner-heading font-extrabold text-white drop-shadow-lg">
             Discover Amazing{" "}
             <span className="text-yellow-300">Contests</span>
           </h1>
@@ -87,7 +87,7 @@ const Banner = () => {
 
         {!isLoading && contests.length > 0 && (
           <>
-            <h2 className="text-2xl font-bold mb-6 text-gray-800 text-center sm:text-left">
+            <h2 className="text-2xl font-bold mb-6 text-gray-400 text-center sm:text-left">
               Search Results:
             </h2>
 
@@ -95,7 +95,7 @@ const Banner = () => {
               {contests.map((contest) => (
                 <div
                   key={contest._id}
-                  className="bg-white/30 backdrop-blur-md p-4 rounded-3xl shadow-xl border border-white/20 hover:scale-105 transition transform"
+                  className="bg-white/80 backdrop-blur-md p-4 rounded-3xl shadow-xl border border-white/20 hover:scale-105 transition transform"
                 >
                   <img
                     src={contest.image}

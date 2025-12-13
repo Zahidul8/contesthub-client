@@ -15,7 +15,7 @@ const HomePage = () => {
 
             {/* popular cntests sections  */}
             <section className='my-10'>
-                <h2 className='text-4xl font-bold text-center my-5'>Popular Contests</h2>
+                <h2 className='section-heading font-bold text-center my-5'>Popular Contests</h2>
                 <PopularContest></PopularContest>
 
                 <div className='flex justify-center my-8'>

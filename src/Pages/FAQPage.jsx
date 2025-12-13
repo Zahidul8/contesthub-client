@@ -43,7 +43,7 @@ const FAQPage = () => {
 
   return (
     <section className="min-h-screen py-16 px-6 
-      bg-gradient-to-br from-[#53629E] to-[#53629E]
+      bg-gradient-to-br from-[#53629e7e] to-[#53629E]
       relative overflow-hidden">
 
       {/* Decorative gradient circles */}
@@ -52,7 +52,7 @@ const FAQPage = () => {
 
       <div className="max-w-4xl mx-auto relative z-10">
         
-        <h2 className="text-4xl md:text-5xl font-extrabold text-center text-gray-900 mb-6">
+        <h2 className="heading font-extrabold text-center text-gray-900 mb-6">
           Frequently Asked Questions
         </h2>
 

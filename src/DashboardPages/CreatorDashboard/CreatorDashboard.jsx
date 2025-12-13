@@ -11,13 +11,13 @@ import { Link } from "react-router";
 
 const CreatorDashboard = () => {
   return (
-    <section className="min-h-screen bg-gray-100 py-10 px-6">
+    <section className="min-h-screen py-10 px-6">
       {/* Header */}
       <div className="mb-10 text-center">
-        <h1 className="text-4xl font-extrabold text-gray-800">
+        <h1 className="text-4xl font-extrabold text-gray-500">
           Creator Dashboard
         </h1>
-        <p className="text-gray-600 text-lg mt-2">
+        <p className="text-gray-500 text-lg mt-2">
           Manage your contests & track submissions
         </p>
       </div>
@@ -30,7 +30,7 @@ const CreatorDashboard = () => {
           <FaTasks className="text-blue-600 text-4xl" />
           <div>
             <p className="text-gray-600">Your Contests</p>
-            <h2 className="text-2xl font-bold">24</h2>
+            <h2 className="text-2xl text-black font-bold">24</h2>
           </div>
         </div>
 
@@ -39,7 +39,7 @@ const CreatorDashboard = () => {
           <FaClipboardCheck className="text-yellow-500 text-4xl" />
           <div>
             <p className="text-gray-600">Pending Approval</p>
-            <h2 className="text-2xl font-bold">5</h2>
+            <h2 className="text-2xl text-black font-bold">5</h2>
           </div>
         </div>
 
@@ -48,7 +48,7 @@ const CreatorDashboard = () => {
           <FaUsers className="text-purple-600 text-4xl" />
           <div>
             <p className="text-gray-600">Total Participants</p>
-            <h2 className="text-2xl font-bold">380</h2>
+            <h2 className="text-2xl text-black font-bold">380</h2>
           </div>
         </div>
 
@@ -57,7 +57,7 @@ const CreatorDashboard = () => {
           <FaDollarSign className="text-green-600 text-4xl" />
           <div>
             <p className="text-gray-600">Prize Money Given</p>
-            <h2 className="text-2xl font-bold">$4,200</h2>
+            <h2 className="text-2xl text-black font-bold">$4,200</h2>
           </div>
         </div>
       </div>
@@ -73,15 +73,15 @@ const CreatorDashboard = () => {
 
           <ul className="space-y-4">
             <li className="flex items-center justify-between bg-gray-50 p-4 rounded-xl">
-              <span className="font-semibold">Logo Design Challenge</span>
+              <span className="font-semibold text-black">Logo Design Challenge</span>
               <span className="text-sm text-blue-600">35 submissions</span>
             </li>
             <li className="flex items-center justify-between bg-gray-50 p-4 rounded-xl">
-              <span className="font-semibold">UI/UX Mobile App Contest</span>
+              <span className="font-semibold text-black">UI/UX Mobile App Contest</span>
               <span className="text-sm text-blue-600">22 submissions</span>
             </li>
             <li className="flex items-center justify-between bg-gray-50 p-4 rounded-xl">
-              <span className="font-semibold">Photography Creative Shot</span>
+              <span className="font-semibold text-black">Photography Creative Shot</span>
               <span className="text-sm text-blue-600">18 submissions</span>
             </li>
           </ul>

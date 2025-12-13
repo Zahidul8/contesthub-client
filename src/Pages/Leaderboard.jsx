@@ -54,7 +54,7 @@ const Leaderboard = () => {
                 className="w-24 h-24 rounded-full object-cover border-4 border-yellow-400"
               />
 
-              <h3 className="mt-4 text-xl font-semibold">
+              <h3 className="mt-4 text-xl text-black font-semibold">
                 {user.name}
               </h3>
 

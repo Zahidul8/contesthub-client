@@ -19,7 +19,7 @@ export default function Register() {
 
     const handleRegister = (data) => {
 
-        const {name, email, password, photo} = data;
+        const { name, email, password, photo } = data;
         const profileImage = photo[0];
 
         createUser(email, password)
@@ -33,14 +33,15 @@ export default function Register() {
                 });
 
                 const formData = new FormData();
-                formData.append('image', profileImage);
-
-                axios.post(`https://api.imgbb.com/1/upload?expiration=600&key=${import.meta.env.VITE_IMAGE_HOST_KEY}`, formData)
+                formData.append('file', profileImage);
+                formData.append('upload_preset',
+                    import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET);
+                axios.post(`https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUDINARY_CLOUD_NAME}/image/upload`, formData)
                     .then(res => {
-                        const photoURL = res.data.data.display_url;
+                        const photoURL = res.data.secure_url;
 
                         // save in  db 
-                         saveOrUpdateUser({name, email, image: photoURL});
+                        saveOrUpdateUser({ name, email, image: photoURL });
 
                         updateUserProfile(name, photoURL)
                             .then(() => {
@@ -62,7 +63,7 @@ export default function Register() {
 
 
 
-                    navigate('/login' );
+                navigate('/login');
 
                 console.log(result.user);
 

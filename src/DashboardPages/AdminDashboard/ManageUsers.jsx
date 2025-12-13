@@ -96,7 +96,7 @@ const ManageUsers = () => {
 
                 {/* Action Buttons */}
                 <td>
-                  <div className="flex flex-col md:flex-row gap-2 justify-center items-center">
+                  <div className="flex flex-row gap-2 justify-center items-center">
 
                     <button
                       className="btn btn-sm border-blue-500 text-blue-600 hover:bg-blue-600 hover:text-white"

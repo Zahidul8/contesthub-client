@@ -81,20 +81,20 @@ const ManageContests = () => {
                     }
                     className="p-2 rounded hover:bg-gray-100"
                   >
-                    <FaEllipsisV />
+                    <FaEllipsisV className="text-black"/>
                   </button>
 
                   {openDropdown === contest._id && (
                     <div className="absolute right-6 top-8 w-40 bg-white border rounded-lg shadow-xl z-30">
                       <button
                         onClick={() => handleAction(contest._id, "confirm")}
-                        className="block w-full px-4 py-2 text-left hover:bg-green-50 hover:text-green-600"
+                        className="block w-full text-black px-4 py-2 text-left hover:bg-green-50 hover:text-green-600"
                       >
                         Confirm
                       </button>
                       <button
                         onClick={() => handleAction(contest._id, "reject")}
-                        className="block w-full px-4 py-2 text-left hover:bg-yellow-50 hover:text-yellow-600"
+                        className="block w-full px-4 py-2 text-black text-left hover:bg-yellow-50 hover:text-yellow-600"
                       >
                         Reject
                       </button>

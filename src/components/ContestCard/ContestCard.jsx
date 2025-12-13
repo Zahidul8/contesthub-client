@@ -4,7 +4,7 @@ import { FaUsers, FaCalendarAlt } from 'react-icons/fa';
 
 const ContestCard = ({ contest }) => {
     return (
-        <div className="bg-white/30 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 overflow-hidden transform hover:scale-105 transition-transform duration-300">
+        <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 overflow-hidden transform hover:scale-105 transition-transform duration-300">
             <figure className="relative h-52 overflow-hidden">
                 <img
                     src={contest.image}

@@ -33,7 +33,7 @@ const MyWinningContest = () => {
 
   return (
     <div className="max-w-7xl mx-auto p-5 md:p-10">
-      <h1 className="text-4xl font-bold text-center mb-10 text-primary">
+      <h1 className="heading font-bold text-center mb-10 text-primary">
         My Winning Contests
       </h1>
 

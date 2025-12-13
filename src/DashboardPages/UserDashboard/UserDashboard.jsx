@@ -8,20 +8,20 @@ import {
   FaUserCircle,
 } from "react-icons/fa";
 import { Link } from "react-router";
-import useAxios from "../../hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../hooks/useAuth";
 import Loading from "../../components/Loading/Loading";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const UserDashboard = () => {
 
   const {user} = useAuth();
-    const axiosInstance = useAxios();
+    const axiosSecure = useAxiosSecure();
 
   const { data: winner = {}, isLoading } = useQuery({
     queryKey: ["winner", user?.email],
     queryFn: async () => {
-      const { data } = await axiosInstance.get(`/win-user?email=${user?.email}`);
+      const { data } = await axiosSecure.get(`/win-user?email=${user?.email}`);
       return data;
     },
   });
@@ -33,11 +33,11 @@ const UserDashboard = () => {
     );
   }
   return (
-    <section className="min-h-screen bg-gray-100 py-10 px-6">
+    <section className="min-h-screen  py-10 px-6">
       
       {/* Header */}
       <div className="mb-10 text-center">
-        <h1 className="text-4xl font-extrabold text-gray-800">
+        <h1 className="text-4xl font-extrabold text-gray-600">
           Welcome Back, User!
         </h1>
         <p className="text-gray-600 text-lg mt-2">
@@ -53,7 +53,7 @@ const UserDashboard = () => {
           <FaTasks className="text-purple-600 text-4xl" />
           <div>
             <p className="text-gray-600">Participated</p>
-            <h2 className="text-2xl font-bold">{winner.participatedCount}</h2>
+            <h2 className="text-2xl text-black font-bold">{winner.participatedCount}</h2>
           </div>
         </div>
 
@@ -62,7 +62,7 @@ const UserDashboard = () => {
           <FaMoneyBillWave className="text-green-600 text-4xl" />
           <div>
             <p className="text-gray-600">Prize Money Won</p>
-            <h2 className="text-2xl font-bold">${winner.totalPrize}</h2>
+            <h2 className="text-2xl text-black font-bold">${winner.totalPrize}</h2>
           </div>
         </div>
 
@@ -71,7 +71,7 @@ const UserDashboard = () => {
           <FaTrophy className="text-yellow-500 text-4xl" />
           <div>
             <p className="text-gray-600">Wins</p>
-            <h2 className="text-2xl font-bold">{winner.totalWins}</h2>
+            <h2 className="text-2xl text-black font-bold">{winner.totalWins}</h2>
           </div>
         </div>
 
@@ -80,7 +80,7 @@ const UserDashboard = () => {
           <FaClock className="text-blue-600 text-4xl" />
           <div>
             <p className="text-gray-600">Pending Results</p>
-            <h2 className="text-2xl font-bold">{winner.participatedCount - winner.totalWins}</h2>
+            <h2 className="text-2xl text-black font-bold">{winner.participatedCount - winner.totalWins}</h2>
           </div>
         </div>
       </div>
@@ -96,15 +96,15 @@ const UserDashboard = () => {
 
           <ul className="space-y-4">
             <li className="flex items-center justify-between bg-gray-50 p-4 rounded-xl">
-              <span className="font-semibold">Logo Design Challenge</span>
+              <span className="font-semibold text-black">Logo Design Challenge</span>
               <span className="text-sm text-purple-600">Submitted</span>
             </li>
             <li className="flex items-center justify-between bg-gray-50 p-4 rounded-xl">
-              <span className="font-semibold">Photography Contest</span>
+              <span className="font-semibold text-black">Photography Contest</span>
               <span className="text-sm text-yellow-600">Pending Result</span>
             </li>
             <li className="flex items-center justify-between bg-gray-50 p-4 rounded-xl">
-              <span className="font-semibold">Mobile UI/UX Challenge</span>
+              <span className="font-semibold text-black">Mobile UI/UX Challenge</span>
               <span className="text-sm text-green-600">Won 🎉</span>
             </li>
           </ul>

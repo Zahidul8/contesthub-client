@@ -29,13 +29,13 @@ const AboutUs = () => {
           />
 
           <div>
-            <p className="text-gray-700 text-lg leading-relaxed">
+            <p className="text-gray-500 text-lg leading-relaxed">
               ContestHub started with a simple idea—give talented people a platform
               where they can showcase their creativity and be rewarded for it.  
               Today, thousands of creators trust us to host fair, transparent, and
               exciting contests across multiple categories.
             </p>
-            <p className="text-gray-700 text-lg leading-relaxed mt-4">
+            <p className="text-gray-500 text-lg leading-relaxed mt-4">
               Whether you're a designer, photographer, writer, or gamer, our mission
               is to help you grow, compete, and shine.
             </p>
@@ -51,7 +51,7 @@ const AboutUs = () => {
           {/* Empower */}
           <div className="p-8 bg-gray-100 rounded-2xl text-center shadow-md hover:scale-105 transition">
             <FaRocket className="text-blue-500 text-5xl mx-auto mb-4" />
-            <h3 className="text-xl font-bold mb-2">Empower Creators</h3>
+            <h3 className="text-xl text-black font-bold mb-2">Empower Creators</h3>
             <p className="text-gray-600">
               We provide tools & support to help creators launch contests and grow their audience.
             </p>
@@ -60,7 +60,7 @@ const AboutUs = () => {
           {/* Inspire */}
           <div className="p-8 bg-gray-100 rounded-2xl text-center shadow-md hover:scale-105 transition">
             <FaLightbulb className="text-yellow-500 text-5xl mx-auto mb-4" />
-            <h3 className="text-xl font-bold mb-2">Inspire Innovation</h3>
+            <h3 className="text-xl text-black font-bold mb-2">Inspire Innovation</h3>
             <p className="text-gray-600">
               We encourage creative thinking and celebrate new ideas in every contest.
             </p>
@@ -69,7 +69,7 @@ const AboutUs = () => {
           {/* Celebrate */}
           <div className="p-8 bg-gray-100 rounded-2xl text-center shadow-md hover:scale-105 transition">
             <FaTrophy className="text-purple-500 text-5xl mx-auto mb-4" />
-            <h3 className="text-xl font-bold mb-2">Celebrate Winners</h3>
+            <h3 className="text-xl text-black font-bold mb-2">Celebrate Winners</h3>
             <p className="text-gray-600">
               Every achievement matters — we make sure winners get the spotlight they deserve.
             </p>
