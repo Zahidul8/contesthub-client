@@ -41,7 +41,7 @@ const MyWinningContest = () => {
         {winningContests.map((contest) => (
           <div
             key={contest._id}
-            className="bg-gradient-to-br from-primary/20 via-secondary/20 to-primary/10 backdrop-blur-md rounded-3xl shadow-2xl overflow-hidden border border-gray-200 hover:shadow-3xl transition transform hover:-translate-y-2"
+            className="bg-gradient-to-br from-white/80 via-white/80 to-primary/10 backdrop-blur-md rounded-3xl shadow-2xl overflow-hidden border border-gray-200 hover:shadow-3xl transition transform hover:-translate-y-2"
           >
             {/* Banner */}
             <div className="relative h-56 overflow-hidden rounded-t-3xl">
@@ -75,7 +75,7 @@ const MyWinningContest = () => {
               {/* Winner Name */}
               <div className="mt-4 flex items-center gap-2 text-gray-800 font-semibold text-lg">
                 <FiAward className="text-yellow-400 w-5 h-5" />
-                Winner: {contest.winnerName}
+                <span className='text-black'>Winner: {contest.winnerName}</span>
               </div>
             </div>
           </div>

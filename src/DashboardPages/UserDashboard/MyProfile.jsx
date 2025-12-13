@@ -53,7 +53,7 @@ const MyProfile = () => {
       <WinPercentageChart />
 
       {/* Profile + Form Container */}
-      <div className="max-w-2xl mx-auto mt-14 mb-20 p-8 bg-white/30 backdrop-blur-2xl shadow-2xl rounded-3xl border border-white/40 relative">
+      <div className="max-w-2xl mx-auto mt-14 mb-20 p-8 bg-white/70 backdrop-blur-2xl shadow-2xl rounded-3xl border border-white/40 relative">
 
         {/* Decorative gradient glow */}
         <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-yellow-200/20 to-black/10 pointer-events-none"></div>
@@ -89,7 +89,7 @@ const MyProfile = () => {
               type="text"
               {...register("name", { required: "Name is required" })}
               placeholder="Enter your new name"
-              className="w-full p-3 rounded-xl border border-gray-300 bg-white/90 shadow-sm focus:ring-2 focus:ring-yellow-400 transition"
+              className="w-full p-3 text-black rounded-xl border border-gray-300 bg-white/90 shadow-sm focus:ring-2 focus:ring-yellow-400 transition"
             />
             {errors.name && (
               <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
@@ -103,7 +103,7 @@ const MyProfile = () => {
             </label>
             <input
               type="file"
-              className="file-input w-full rounded-xl bg-white/90 border border-gray-300 shadow-sm"
+              className="file-input text-black w-full rounded-xl bg-white/90 border border-gray-300 shadow-sm"
               {...register("photo", { required: true })}
             />
             {errors.photo && (

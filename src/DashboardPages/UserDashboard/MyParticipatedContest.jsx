@@ -26,7 +26,7 @@ const MyParticipatedContest = () => {
 
     return (
         <div className=" p-5 md:p-10">
-            <h1 className="text-3xl font-bold text-gray-800 mb-6">My Participated Contests</h1>
+            <h1 className="text-3xl font-bold text-gray-500 mb-6">My Participated Contests</h1>
             <div className="overflow-x-auto">
                 <table className="min-w-full bg-white/20 backdrop-blur-md rounded-xl shadow-xl border border-gray-200">
                     <thead>

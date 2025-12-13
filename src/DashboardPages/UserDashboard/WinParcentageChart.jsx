@@ -37,7 +37,7 @@ const WinPercentageChart = () => {
   ];
 
   return (
-    <div className="max-w-md mx-auto p-5 bg-white/20 backdrop-blur-md rounded-3xl shadow-2xl mt-10">
+    <div className="max-w-md mx-auto p-5 bg-white/85 backdrop-blur-md rounded-3xl shadow-2xl mt-10">
       <h2 className="text-2xl font-bold text-center text-gray-800 mb-4">Win Percentage</h2>
 
       <ResponsiveContainer width="100%" height={300}>
