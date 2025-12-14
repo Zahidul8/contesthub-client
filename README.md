@@ -1,16 +1,50 @@
-# React + Vite
+🎯 ContestHub
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ContestHub is a modern online contest management platform where users can participate in creative and technical contests, creators can host contests, and admins can manage the entire system efficiently.
 
-Currently, two official plugins are available:
+🌐 Live Website:
+👉 https://contesthub-client-project.netlify.app
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## React Compiler
+🚀 Website Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+● 🔐 Secure Authentication using Firebase (Email/Password & Google Sign-In)
 
-## Expanding the ESLint configuration
+● 👥 Role-Based Access System (User, Creator, Admin)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+● 🏆 Contest Creation & Management for approved creators
+
+● 💳 Stripe Payment Integration for contest participation
+
+● 📊 Admin Dashboard to approve, reject, or delete contests
+
+● 🧾 User Dashboard to track joined contests and submissions
+
+● 🥇 Winner Declaration System with automatic win & prize tracking
+
+● 📈 Leaderboard Section showing top winners based on performance
+
+● 🔍 Contest Filtering & Search by contest type
+
+● ⏳ Live Deadline Handling with submission validation
+
+● 📱 Fully Responsive UI for mobile, tablet, and desktop devices
+
+● ⚡ Optimized Performance using React Query and pagination
+
+● 🔒 Protected API Routes using Firebase token verification
+
+● 🎨 Modern & Clean UI Design built with Tailwind CSS and DaisyUI
+
+
+ 🛠️ Technologies Used
+
+Frontend: React, React Router, Tailwind CSS, DaisyUI
+
+Backend: Node.js, Express.js, MongoDB
+
+Authentication: Firebase
+
+Payments: Stripe
+
+Data Fetching: TanStack React Query
