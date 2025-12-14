@@ -191,7 +191,7 @@ const ContestDetails = () => {
         )}
 
         {payment?.paymentStatus && (
-          <button onClick={() => { modalRef.current.showModal(); }}
+          <button disabled={contest?.winnerName} onClick={() => { modalRef.current.showModal(); }}
             className="btn bg-green-600 text-white px-12 py-4 text-lg md:text-xl rounded-2xl shadow-xl hover:bg-green-700 transition"
           >
             Submit Task

@@ -113,7 +113,7 @@ const MyCreatedContest = () => {
                     <button
                       className="flex items-center gap-2 bg-blue-600 text-white px-3 py-1 rounded-md text-sm hover:bg-blue-700"
                     >
-                      Submission <FaArrowRight />
+                      See Submission <FaArrowRight />
                     </button>
 
                     {/* SHOW ONLY IF STATUS IS PENDING */}

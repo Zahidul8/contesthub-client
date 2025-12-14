@@ -53,7 +53,7 @@ const SubmittedTasks = () => {
                                         
                                     >
                                         <FiEye size={18} />
-                                        View Details
+                                        Submission
                                     </Link>
                                 </td>
                             </tr>

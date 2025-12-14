@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { FaEllipsisV } from "react-icons/fa";
 import Loading from "../../components/Loading/Loading";
+import Swal from "sweetalert2";
 
 const ManageContests = () => {
   const axiosSecure = useAxiosSecure();
@@ -19,15 +20,74 @@ const ManageContests = () => {
     keepPreviousData: true,
   });
 
+  // const handleAction = async (id, action) => {
+  //   try {
+  //     await axiosSecure.patch(`/contests/action/${id}`, { action });
+  //     refetch();
+  //     setOpenDropdown(null);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
+
   const handleAction = async (id, action) => {
-    try {
-      await axiosSecure.patch(`/contests/action/${id}`, { action });
-      refetch();
-      setOpenDropdown(null);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  let title = "";
+  let text = "";
+  let confirmBtn = "";
+  let successMsg = "";
+
+  if (action === "confirm") {
+    title = "Approve Contest?";
+    text = "This contest will be approved and visible to users.";
+    confirmBtn = "Yes, approve it!";
+    successMsg = "Contest approved successfully!";
+  } 
+  else if (action === "reject") {
+    title = "Reject Contest?";
+    text = "This contest will be rejected.";
+    confirmBtn = "Yes, reject it!";
+    successMsg = "Contest rejected successfully!";
+  } 
+  else if (action === "delete") {
+    title = "Delete Contest?";
+    text = "This action cannot be undone!";
+    confirmBtn = "Yes, delete it!";
+    successMsg = "Contest deleted successfully!";
+  }
+
+  const result = await Swal.fire({
+    title,
+    text,
+    icon: action === "delete" ? "warning" : "question",
+    showCancelButton: true,
+    confirmButtonText: confirmBtn,
+    cancelButtonText: "Cancel",
+    confirmButtonColor: action === "delete" ? "#dc2626" : "#2563eb",
+  });
+
+  if (!result.isConfirmed) return;
+
+  try {
+    await axiosSecure.patch(`/contests/action/${id}`, { action });
+    refetch();
+    setOpenDropdown(null);
+
+    Swal.fire({
+      icon: "success",
+      title: "Success!",
+      text: successMsg,
+      timer: 1500,
+      showConfirmButton: false,
+    });
+  } catch (err) {
+    Swal.fire({
+      icon: "error",
+      title: "Oops!",
+      text: "Something went wrong. Please try again.",
+    });
+    console.log(err);
+  }
+};
 
   if (isLoading) return <Loading />;
 

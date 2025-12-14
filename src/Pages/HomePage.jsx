@@ -19,7 +19,7 @@ const HomePage = () => {
                 <PopularContest></PopularContest>
 
                 <div className='flex justify-center my-8'>
-                <Link className='btn btn-primary' to={'/all-contests'}>All Contests </Link>
+                <Link className='btn btn-primary' to={'/all-contests'}>Show All</Link>
                 </div>
             </section>
 

@@ -6,6 +6,10 @@ ContestHub is a modern online contest management platform where users can partic
 👉 https://contesthub-client-project.netlify.app
 
 
+⚡ About page and FAQ page: 
+   You can know about us and if you have any question vist FAQ page.
+
+
 🚀 Website Features
 
 ● 🔐 Secure Authentication using Firebase (Email/Password & Google Sign-In)
