@@ -109,7 +109,7 @@ const ContestDetails = () => {
 
       {/* Countdown */}
       <div className="text-2xl my-6">
-        <h3 className="text-3xl font-semibold text-gray-700 mb-2">Deadline:</h3>
+        <h3 className="text-3xl font-semibold text-[#859c03] mb-2">Deadline:</h3>
         <Countdown deadline={contest.deadline} setTimeLeft={setTimeLeft} timeLeft={timeLeft} />
       </div>
 
@@ -133,7 +133,7 @@ const ContestDetails = () => {
         <div className="flex items-center bg-white/30 backdrop-blur-xl shadow-xl p-5 rounded-2xl border border-white/30 hover:scale-105 transition transform">
           <FiUsers className="w-10 h-10 text-primary mr-4" />
           <div>
-            <p className="text-sm text-gray-500">Participants</p>
+            <p className="text-sm text-black">Participants</p>
             <p className="text-xl md:text-2xl font-bold">{contest.count || 0}</p>
           </div>
         </div>
@@ -142,7 +142,7 @@ const ContestDetails = () => {
         <div className="flex items-center bg-white/30 backdrop-blur-xl shadow-xl p-5 rounded-2xl border border-white/30 hover:scale-105 transition transform">
           <FiDollarSign className="w-10 h-10 text-yellow-400 mr-4" />
           <div>
-            <p className="text-sm text-gray-500">Prize Money</p>
+            <p className="text-sm text-black">Prize Money</p>
             <p className="text-xl md:text-2xl font-bold">${contest.prizeMoney}</p>
           </div>
         </div>
@@ -151,7 +151,7 @@ const ContestDetails = () => {
         <div className="flex items-center bg-white/30 backdrop-blur-xl shadow-xl p-5 rounded-2xl border border-white/30 hover:scale-105 transition transform">
           <FiTag className="w-10 h-10 text-green-500 mr-4" />
           <div>
-            <p className="text-sm text-gray-500">Entry Fee</p>
+            <p className="text-sm text-black">Entry Fee</p>
             <p className="text-xl md:text-2xl font-bold">${contest.price}</p>
           </div>
         </div>
@@ -160,7 +160,7 @@ const ContestDetails = () => {
         <div className="flex items-center bg-white/30 backdrop-blur-xl shadow-xl p-5 rounded-2xl border border-white/30 hover:scale-105 transition transform">
           <FiAward className="w-10 h-10 text-yellow-500 mr-4" />
           <div>
-            <p className="text-sm text-gray-500">Winner</p>
+            <p className="text-sm text-black">Winner</p>
             <p className="text-xl md:text-2xl font-semibold">{contest.winnerName || "TBD"}</p>
           </div>
         </div>
@@ -169,13 +169,13 @@ const ContestDetails = () => {
       {/* Description */}
       <div className="bg-white/30 backdrop-blur-xl rounded-3xl p-7 shadow-2xl border border-white/30 hover:shadow-3xl transition">
         <h2 className="text-2xl md:text-3xl font-bold mb-4">Contest Description</h2>
-        <p className="text-gray-700 leading-relaxed">{contest.description}</p>
+        <p className="text-black leading-relaxed">{contest.description}</p>
       </div>
 
       {/* Task Instructions */}
       <div className="bg-white/30 backdrop-blur-xl rounded-3xl p-7 shadow-2xl border border-white/30 hover:shadow-3xl transition">
         <h2 className="text-2xl md:text-3xl font-bold mb-4">Task Instructions</h2>
-        <p className="text-gray-700 leading-relaxed">{contest.taskInstruction}</p>
+        <p className="text-black leading-relaxed">{contest.taskInstruction}</p>
       </div>
 
       {/* Register / Pay & Submit Task */}
