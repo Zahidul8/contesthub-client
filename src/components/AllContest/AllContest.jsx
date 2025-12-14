@@ -4,18 +4,26 @@ import { useQuery } from '@tanstack/react-query';
 import ContestCard from '../ContestCard/ContestCard';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import Loading from '../Loading/Loading';
 
 const AllContest = () => {
   const axiosInstance = useAxios();
   const [type, setType] = useState(' ');
 
-  const { data: contests = [] } = useQuery({
+  const { data: contests = [], isLoading } = useQuery({
     queryKey: ['contests', type],
     queryFn: async () => {
       const { data } = await axiosInstance.get(`/contests_all?type=${type}`);
       return data;
     },
   });
+
+    if (isLoading) {
+    return (
+      <Loading></Loading>
+    );
+  }
+
 
   return (
     <div className="min-h-screen  py-12 px-4">

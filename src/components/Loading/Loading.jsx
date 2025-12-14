@@ -1,9 +1,10 @@
 import React from 'react';
+import ScaleLoader from "react-spinners/ScaleLoader";
 
 const Loading = () => {
     return (
         <div className='h-screen flex justify-center items-center'>
-            <span className="loading loading-infinity loading-xl"></span>
+           <ScaleLoader color='blue'/>
         </div>
     );
 };
