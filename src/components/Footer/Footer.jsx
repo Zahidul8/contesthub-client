@@ -25,8 +25,8 @@ const Footer = () => {
             <ul className="space-y-2 opacity-90">
               <li><a className="hover:text-primary transition" href="/aboutUs">About Us</a></li>
               <li><a className="hover:text-primary transition" href="/faq">FAQ</a></li>
-              <li><a className="hover:text-primary transition" href="#">Browse Contests</a></li>
-              <li><a className="hover:text-primary transition" href="#">Contact</a></li>
+              <li><a className="hover:text-primary transition" href="/all-contests">Browse Contests</a></li>
+              <li><a className="hover:text-primary transition" href="/leaderboard">Leaderboard</a></li>
             </ul>
           </div>
 

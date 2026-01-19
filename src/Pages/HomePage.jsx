@@ -4,6 +4,13 @@ import { Link } from 'react-router';
 import HowItWorks from '../components/HowItWorks/HowItWorks';
 import Banner from '../components/Banner/Banner';
 import WinnerAdd from '../components/WinnerAdd/WinnerAdd';
+import WhyChooseUs from '../components/WhychooseUs/WhyChooseUs';
+import ContestCategories from '../components/ContestCategories/ContestCategories';
+import PlatformFeatures from '../components/PlatformFeatures/PlatformFeatures';
+import StatisticsSection from '../components/StatisticsSection/StatisticsSection';
+import TopCreators from '../components/TopCreators/TopCreators';
+import Testimonials from '../components/Testimonials/Testimonials';
+import CallToAction from '../components/CallToAction/CallToAction';
 
 const HomePage = () => {
     return (
@@ -24,13 +31,41 @@ const HomePage = () => {
             </section>
 
             {/* winner advertisement section  */}
-            <section>
+            <section className='my-10'>
                 <WinnerAdd></WinnerAdd>
             </section>
 
             {/* extra section  */}
-            <section>
+            <section className='my-10'>
                 <HowItWorks></HowItWorks>
+            </section>
+
+            <section className='my-10'>
+                <WhyChooseUs></WhyChooseUs>
+            </section>
+
+            <section className='my-10'>
+                <ContestCategories></ContestCategories>
+            </section>
+
+            <section className='my-10'>
+               <PlatformFeatures></PlatformFeatures>
+            </section>
+
+            <section className='my-10'>
+                <StatisticsSection></StatisticsSection>
+            </section>
+
+            <section className='my-10'>
+                <TopCreators></TopCreators>
+            </section>
+
+            <section className='my-10'>
+                <Testimonials></Testimonials>
+            </section>
+
+            <section className='my-10'>
+                <CallToAction></CallToAction>
             </section>
         </div>
     );

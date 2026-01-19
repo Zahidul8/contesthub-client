@@ -2,13 +2,11 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import WinPercentageChart from "./WinParcentageChart";
 import useAuth from "../../hooks/useAuth";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
-import axios from "axios";
 import Swal from "sweetalert2";
+import { imageUploadCloudinary } from "../../Uitls";
 
 const MyProfile = () => {
   const { updateUserProfile, user } = useAuth();
-  const axiosSecure = useAxiosSecure();
 
   const {
     register,
@@ -17,50 +15,47 @@ const MyProfile = () => {
     formState: { errors },
   } = useForm();
 
-  const handleUpdateProfile = (data) => {
-    const profileImage = data.photo[0];
-    const formData = new FormData();
-    formData.append("image", profileImage);
+  const handleUpdateProfile = async (data) => {
+    if (!data.photo[0]) return;
 
-    axios
-      .post(
-        `https://api.imgbb.com/1/upload?expiration=600&key=${import.meta.env.VITE_IMAGE_HOST_KEY}`,
-        formData
-      )
-      .then((res) => {
-        const photoURL = res.data.data.display_url;
+    try {
+      // Upload image to Cloudinary
+      const photoURL = await imageUploadCloudinary(data.photo[0]);
+     
 
-        updateUserProfile(data.name, photoURL)
-          .then(() => {
-            reset();
-            Swal.fire({
-              position: "top-center",
-              icon: "success",
-              title: "Profile updated!",
-              showConfirmButton: false,
-              timer: 1500,
-            });
-          })
-          .catch((error) => {
-            console.log(error.message);
-          });
+      // Update Firebase user profile
+      await updateUserProfile(data.name, photoURL);
+
+      reset();
+      Swal.fire({
+        position: "top-center",
+        icon: "success",
+        title: "Profile updated!",
+        showConfirmButton: false,
+        timer: 1500,
       });
+    } catch (error) {
+      console.error(error);
+      Swal.fire({
+        icon: "error",
+        title: "Update Failed",
+        text: error.message || "Something went wrong, please try again.",
+      });
+    }
   };
 
   return (
     <div>
-
+      {/* Win Chart */}
       <WinPercentageChart />
 
       {/* Profile + Form Container */}
       <div className="max-w-2xl mx-auto mt-14 mb-20 p-8 bg-white/70 backdrop-blur-2xl shadow-2xl rounded-3xl border border-white/40 relative">
-
         {/* Decorative gradient glow */}
         <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-yellow-200/20 to-black/10 pointer-events-none"></div>
 
         {/* Profile Header */}
         <div className="flex flex-col items-center mb-10 relative z-10">
-
           {/* Large Profile Image */}
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-br from-yellow-400 to-yellow-200 rounded-full blur-xl opacity-40"></div>
@@ -79,12 +74,9 @@ const MyProfile = () => {
 
         {/* Update Form */}
         <form onSubmit={handleSubmit(handleUpdateProfile)} className="space-y-6 relative z-10">
-
           {/* Name */}
           <div>
-            <label className="block font-semibold text-gray-700 mb-1">
-              Update Name
-            </label>
+            <label className="block font-semibold text-gray-700 mb-1">Update Name</label>
             <input
               type="text"
               {...register("name", { required: "Name is required" })}
@@ -98,16 +90,14 @@ const MyProfile = () => {
 
           {/* Image Upload */}
           <div>
-            <label className="block font-semibold text-gray-700 mb-1">
-              Update Profile Photo
-            </label>
+            <label className="block font-semibold text-gray-700 mb-1">Update Profile Photo</label>
             <input
               type="file"
               className="file-input text-black w-full rounded-xl bg-white/90 border border-gray-300 shadow-sm"
-              {...register("photo", { required: true })}
+              {...register("photo", { required: "Photo is required" })}
             />
             {errors.photo && (
-              <p className="text-red-500 text-sm mt-1">Photo is required</p>
+              <p className="text-red-500 text-sm mt-1">{errors.photo.message || "Photo is required"}</p>
             )}
           </div>
 

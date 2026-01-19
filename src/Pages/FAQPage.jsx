@@ -50,7 +50,7 @@ const FAQPage = () => {
       <div className="absolute top-10 left-10 w-32 h-32 bg-yellow-500 opacity-20 rounded-full blur-2xl"></div>
       <div className="absolute bottom-20 right-10 w-40 h-40 bg-orange-400 opacity-20 rounded-full blur-2xl"></div>
 
-      <div className="max-w-4xl mx-auto relative z-10">
+      <div className="max-w-4xl mx-auto relative">
         
         <h2 className="heading font-extrabold text-center text-gray-900 mb-6">
           Frequently Asked Questions

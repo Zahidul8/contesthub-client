@@ -10,7 +10,7 @@ import useAxiosSecure from "../hooks/useAxiosSecure";
 import Loading from "../components/Loading/Loading";
 
 const ContestDetails = () => {
-  const { register, handleSubmit, formState: { errors }, reset } = useForm()
+  const { register, handleSubmit, formState: { errors }, reset } = useForm();
   const { id } = useParams();
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -43,24 +43,15 @@ const ContestDetails = () => {
       image: contest.image || "",
       email: user.email,
     };
-
     try {
       const { data } = await axiosSecure.post('/create-checkout-session', paymentInfo);
       window.location.assign(data.url);
     } catch (error) {
-      if (error.response && error.response.data?.error) {
-        Swal.fire({
-          icon: "info",
-          title: "Payment Already Done",
-          text: error.response.data.error,
-        });
-      } else {
-        Swal.fire({
-          icon: "error",
-          title: "Payment Failed",
-          text: "Something went wrong, please try again.",
-        });
-      }
+      Swal.fire({
+        icon: "error",
+        title: error.response?.data?.error || "Payment Failed",
+        text: "Something went wrong. Try again!",
+      });
     }
   };
 
@@ -77,156 +68,129 @@ const ContestDetails = () => {
 
     axiosSecure.post('/submission', taskInfo)
       .then(res => {
+        modalRef.current.close();
+        reset();
         if (res.data.insertedId) {
-          modalRef.current.close();
-          navigate('/');
-          reset();
-          Swal.fire({
-            position: "top-center",
-            icon: "success",
-            title: "Your Task has been sent",
-            showConfirmButton: false,
-            timer: 1500
-          });
+          Swal.fire({ icon: "success", title: "Task submitted!", timer: 1500, showConfirmButton: false });
         } else {
-          modalRef.current.close();
-          navigate('/');
-          reset();
-          Swal.fire({
-            icon: "info",
-            title: "You have already sent your task",
-          });
+          Swal.fire({ icon: "info", title: "You already submitted this task" });
         }
       });
-  }
+  };
 
-  if (isLoading) return (
-    <Loading></Loading>
-  );
+  if (isLoading) return <Loading />;
 
   return (
-    <div className="max-w-6xl mx-auto p-5 md:p-10 space-y-10">
+    <div className="max-w-7xl mx-auto px-4 md:px-8 py-10 space-y-12">
 
-      {/* Countdown */}
-      <div className="text-2xl my-6">
-        <h3 className="text-3xl font-semibold text-[#859c03] mb-2">Deadline:</h3>
-        <Countdown deadline={contest.deadline} setTimeLeft={setTimeLeft} timeLeft={timeLeft} />
-      </div>
+      {/* ===== Left-Right Split ===== */}
+      <div className="flex flex-col lg:flex-row gap-8">
 
-      {/* Banner */}
-      <div className="relative w-full h-72 md:h-96 rounded-3xl overflow-hidden shadow-2xl border-2 border-gradient-to-r from-primary to-secondary">
-        <img
-          src={contest.image}
-          alt="Contest Banner"
-          className="w-full h-full object-cover transform hover:scale-105 transition duration-500"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-5 rounded-3xl">
-          <h1 className="text-white text-3xl md:text-5xl font-extrabold drop-shadow-lg">
+        {/* Left: Contest Image */}
+        <div className="lg:w-1/2 flex-shrink-0 rounded-3xl overflow-hidden shadow-2xl">
+          <img
+            src={contest.image}
+            alt={contest.name}
+            className="w-full h-full object-cover transform hover:scale-105 transition duration-500"
+          />
+        </div>
+
+        {/* Right: Contest Info */}
+        <div className="lg:w-1/2 space-y-6">
+
+          <h1 className="text-3xl md:text-4xl font-extrabold text-gray-500">
             {contest.name}
           </h1>
+          <p className="text-gray-700 text-lg">{contest.contestType}</p>
+
+          {/* Countdown */}
+          <div className="bg-gradient-to-r from-primary to-secondary text-white p-4 rounded-xl text-center font-semibold">
+            <span>⏳ Time Left: </span>
+            <Countdown deadline={contest.deadline} setTimeLeft={setTimeLeft} timeLeft={timeLeft} />
+          </div>
+
+          {/* Stats */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <StatCard icon={<FiUsers />} label="Participants" value={contest.count || 0} />
+            <StatCard icon={<FiDollarSign />} label="Prize" value={`$${contest.prizeMoney}`} />
+            <StatCard icon={<FiTag />} label="Entry Fee" value={`$${contest.price}`} />
+            <StatCard icon={<FiAward />} label="Winner" value={contest.winnerName || "TBD"} />
+          </div>
+
+          {/* Description */}
+          <div className="bg-white p-5 rounded-2xl shadow-lg text-gray-800">
+            <h2 className="font-semibold text-xl mb-2">📄 Contest Description</h2>
+            <p>{contest.description}</p>
+          </div>
+
+          {/* Task Instructions */}
+          <div className="bg-white p-5 rounded-2xl shadow-lg text-gray-800">
+            <h2 className="font-semibold text-xl mb-2">📝 Task Instructions</h2>
+            <p>{contest.taskInstruction}</p>
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4">
+            {!payment?.paymentStatus && (
+              <button
+                onClick={handlePayment}
+                disabled={timeLeft.expired || !user}
+                className="flex-1 bg-gradient-to-r from-primary to-secondary text-white py-3 rounded-xl font-semibold hover:scale-105 transition cursor-pointer"
+              >
+                🚀 Register & Pay
+              </button>
+            )}
+
+            {payment?.paymentStatus && (
+              <button
+                onClick={() => modalRef.current.showModal()}
+                disabled={contest?.winnerName}
+                className="flex-1 bg-green-600 hover:bg-green-700 text-white py-3 rounded-xl font-semibold transition"
+              >
+                📤 Submit Task
+              </button>
+            )}
+          </div>
+
         </div>
       </div>
 
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        {/* Participants */}
-        <div className="flex items-center bg-white/30 backdrop-blur-xl shadow-xl p-5 rounded-2xl border border-white/30 hover:scale-105 transition transform">
-          <FiUsers className="w-10 h-10 text-primary mr-4" />
-          <div>
-            <p className="text-sm text-black">Participants</p>
-            <p className="text-xl md:text-2xl font-bold">{contest.count || 0}</p>
-          </div>
+      {/* ===== Submission Modal ===== */}
+      <dialog ref={modalRef} className="modal modal-bottom sm:modal-middle">
+        <div className="modal-box rounded-3xl">
+          <form onSubmit={handleSubmit(handleSubmitTask)} className="space-y-4">
+            <h3 className="text-2xl font-bold">Submit Your Task</h3>
+            <textarea
+              className="w-full h-40 p-4 rounded-xl border bg-gray-50 focus:ring-2 focus:ring-primary"
+              placeholder="Write your task submission here..."
+              {...register("task", { required: true })}
+            />
+            {errors.task && <p className="text-red-500 text-sm">Task is required</p>}
+            <div className="flex justify-between">
+              <button type="button" onClick={() => modalRef.current.close()}
+                className="px-6 py-2 bg-gray-300 rounded-lg">
+                Close
+              </button>
+              <button className="px-8 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
+                Submit
+              </button>
+            </div>
+          </form>
         </div>
-
-        {/* Prize Money */}
-        <div className="flex items-center bg-white/30 backdrop-blur-xl shadow-xl p-5 rounded-2xl border border-white/30 hover:scale-105 transition transform">
-          <FiDollarSign className="w-10 h-10 text-yellow-400 mr-4" />
-          <div>
-            <p className="text-sm text-black">Prize Money</p>
-            <p className="text-xl md:text-2xl font-bold">${contest.prizeMoney}</p>
-          </div>
-        </div>
-
-        {/* Price */}
-        <div className="flex items-center bg-white/30 backdrop-blur-xl shadow-xl p-5 rounded-2xl border border-white/30 hover:scale-105 transition transform">
-          <FiTag className="w-10 h-10 text-green-500 mr-4" />
-          <div>
-            <p className="text-sm text-black">Entry Fee</p>
-            <p className="text-xl md:text-2xl font-bold">${contest.price}</p>
-          </div>
-        </div>
-
-        {/* Winner */}
-        <div className="flex items-center bg-white/30 backdrop-blur-xl shadow-xl p-5 rounded-2xl border border-white/30 hover:scale-105 transition transform">
-          <FiAward className="w-10 h-10 text-yellow-500 mr-4" />
-          <div>
-            <p className="text-sm text-black">Winner</p>
-            <p className="text-xl md:text-2xl font-semibold">{contest.winnerName || "TBD"}</p>
-          </div>
-        </div>
-      </div>
-
-      {/* Description */}
-      <div className="bg-white/30 backdrop-blur-xl rounded-3xl p-7 shadow-2xl border border-white/30 hover:shadow-3xl transition">
-        <h2 className="text-2xl md:text-3xl font-bold mb-4">Contest Description</h2>
-        <p className="text-black leading-relaxed">{contest.description}</p>
-      </div>
-
-      {/* Task Instructions */}
-      <div className="bg-white/30 backdrop-blur-xl rounded-3xl p-7 shadow-2xl border border-white/30 hover:shadow-3xl transition">
-        <h2 className="text-2xl md:text-3xl font-bold mb-4">Task Instructions</h2>
-        <p className="text-black leading-relaxed">{contest.taskInstruction}</p>
-      </div>
-
-      {/* Register / Pay & Submit Task */}
-      <div className="text-center space-y-4">
-        {!payment?.paymentStatus && (
-          <button
-            onClick={handlePayment}
-            disabled={timeLeft.expired}
-            className="btn bg-gradient-to-r from-primary to-secondary text-white px-12 py-4 text-lg md:text-xl rounded-2xl shadow-xl hover:shadow-2xl transition transform hover:-translate-y-1"
-          >
-            Register / Pay
-          </button>
-        )}
-
-        {payment?.paymentStatus && (
-          <button disabled={contest?.winnerName} onClick={() => { modalRef.current.showModal(); }}
-            className="btn bg-green-600 text-white px-12 py-4 text-lg md:text-xl rounded-2xl shadow-xl hover:bg-green-700 transition"
-          >
-            Submit Task
-          </button>
-        )}
-
-        <dialog ref={modalRef} className="modal modal-bottom sm:modal-middle">
-          <div className="modal-box space-y-4">
-            <form onSubmit={handleSubmit(handleSubmitTask)}>
-              <h3 className="font-bold text-2xl text-gray-800">Submit Your Task</h3>
-              <p className="text-gray-500">Write your submission below and click Submit.</p>
-
-              <textarea
-                className="w-full h-40 p-4 rounded-xl border border-gray-300 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary/60 transition-all shadow-sm"
-                placeholder="Write your task submission here..."
-                {...register('task', { required: true })}
-              ></textarea>
-              {errors.task && <p className='text-red-500 text-sm'>Task is required</p>}
-
-              <div className="modal-action flex justify-between">
-                <form method="dialog">
-                  <button className="btn bg-gray-300 hover:bg-gray-400 text-gray-800 border-none px-6 rounded-lg shadow">
-                    Close
-                  </button>
-                </form>
-                <button className="btn bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-8 rounded-lg shadow-lg transition-all">
-                  Submit
-                </button>
-              </div>
-            </form>
-          </div>
-        </dialog>
-      </div>
+      </dialog>
     </div>
   );
 };
+
+// ===== Reusable Components =====
+const StatCard = ({ icon, label, value }) => (
+  <div className="bg-white/30 backdrop-blur-xl p-4 rounded-xl shadow flex items-center gap-3 hover:scale-105 transition">
+    <div className="text-2xl text-primary">{icon}</div>
+    <div>
+      <p className="text-sm text-gray-800">{label}</p>
+      <p className="font-bold text-lg">{value}</p>
+    </div>
+  </div>
+);
 
 export default ContestDetails;
