@@ -22,8 +22,8 @@ const SubmittedTasks = () => {
             <h1 className="text-2xl md:text-3xl font-bold mb-6 text-center">Submitted Tasks</h1>
 
             {/* Table Wrapper */}
-            <div className="overflow-x-auto bg-white shadow-lg rounded-xl">
-                <table className="min-w-full border-collapse">
+            <div className=" text-black overflow-x-auto bg-white shadow-lg rounded-xl">
+                <table className="min-w-full border-collapse ">
                     <thead>
                         <tr className="bg-gray-100 text-left text-sm md:text-base">
                             <th className="p-3 border-b">Submission ID</th>
