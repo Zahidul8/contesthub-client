@@ -7,7 +7,7 @@ ContestHub is a modern online contest management platform where users can partic
 
 
 ⚡ About page and FAQ page: 
-   You can know about us and if you have any question vist FAQ page.
+   You can know about us and if you have any question visit FAQ page.
 
 
 🚀 Website Features
